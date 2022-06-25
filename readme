@@ -1,0 +1,17 @@
+api example:
+
+http://localhost:3000/api/image/?height=10000&width=20000&path=mo.png
+
+hight => the new  hight
+
+width=> the new width
+
+path => PNG img name from "assets/full" folder
+
+-NEW IMAGE IS saved into "assets/thumb" folder
+
+-image with the same name in the "assets/thumb" folder wont be processed again
+
+
+
+-------------------------------
