@@ -43,18 +43,26 @@ var resize = function (req, res,
 next) { return __awaiter(void 0, void 0, void 0, function () {
     var height, width, path, metadata;
     return __generator(this, function (_a) {
-        height = parseInt(req.query.height);
-        width = parseInt(req.query.width);
-        path = req.query.path;
-        metadata = (0, functionsOFsharp_1.getMetaData)(req, res, path);
-        console.log(metadata);
-        //check and resize
-        (0, functionsOFsharp_1.checkIfExists)(req, res, height, width, path);
-        //req.query.height  = 21 as unknown as string;
-        //console.log('AfterEditing W:', req.query.height , 'H:', width);
-        // console.log('\nMdlware finished...\n');
-        next();
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                height = parseInt(req.query.height);
+                width = parseInt(req.query.width);
+                path = req.query.path;
+                return [4 /*yield*/, (0, functionsOFsharp_1.getMetaData)(req, res, path)];
+            case 1:
+                metadata = _a.sent();
+                console.log(metadata);
+                //check and resize
+                return [4 /*yield*/, (0, functionsOFsharp_1.checkIfExists)(req, res, height, width, path)];
+            case 2:
+                //check and resize
+                _a.sent();
+                //req.query.height  = 21 as unknown as string;
+                //console.log('AfterEditing W:', req.query.height , 'H:', width);
+                // console.log('\nMdlware finished...\n');
+                next();
+                return [2 /*return*/];
+        }
     });
 }); };
 exports.resize = resize;

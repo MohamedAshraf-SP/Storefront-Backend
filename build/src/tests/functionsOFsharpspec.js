@@ -39,12 +39,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var functionsOFsharp_1 = require("../middlewares/functionsOFsharp");
 var imgMdlwr_1 = require("../middlewares/imgMdlwr");
 describe('***sharp functions test***', function () {
-    it('--Check If IMG Exists', function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            expect(functionsOFsharp_1.checkIfExists).toBeTruthy();
-            return [2 /*return*/];
-        });
-    }); });
     it('--operation done ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             expect(imgMdlwr_1.resize).toBeTruthy();

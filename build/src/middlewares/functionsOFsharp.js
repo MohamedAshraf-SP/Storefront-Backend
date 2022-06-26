@@ -90,21 +90,30 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
     });
 }); };
 exports.resizeImg = resizeImg;
-var checkIfExists = function (req, res, height, width, path) {
-    try {
-        var imgDIST = "assets\\thumb\\".concat(path).concat(width, "w-").concat(height, "h.png");
-        console.log('\n\n\n--from check-');
-        if (fs_1.default.existsSync(imgDIST)) {
-            res.locals.imgDIST = imgDIST;
-            console.log('\n\n\n-the image exists\n\n\n');
+var checkIfExists = function (req, res, height, width, path) { return __awaiter(void 0, void 0, void 0, function () {
+    var imgDIST, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 4, , 5]);
+                imgDIST = "assets\\thumb\\".concat(path).concat(width, "w-").concat(height, "h.png");
+                console.log('\n\n\n--from check-');
+                if (!fs_1.default.existsSync(imgDIST)) return [3 /*break*/, 1];
+                res.locals.imgDIST = imgDIST;
+                console.log('\n\n\n-the image exists\n\n\n');
+                return [3 /*break*/, 3];
+            case 1: return [4 /*yield*/, (0, exports.resizeImg)(req, res, height, width, path)];
+            case 2:
+                _a.sent();
+                console.log('\n\n\n-the new image created\n\n\n');
+                _a.label = 3;
+            case 3: return [3 /*break*/, 5];
+            case 4:
+                error_3 = _a.sent();
+                console.log("\nxxxxerr in if existxxxxx\n\n".concat(error_3, "\nxxxxxxxxxx\n\n"));
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
         }
-        else {
-            (0, exports.resizeImg)(req, res, height, width, path);
-            console.log('\n\n\n-the new image created\n\n\n');
-        }
-    }
-    catch (error) {
-        console.log("\nxxxxerr in if existxxxxx\n\n".concat(error, "\nxxxxxxxxxx\n\n"));
-    }
-};
+    });
+}); };
 exports.checkIfExists = checkIfExists;
