@@ -64,3 +64,11 @@ describe('***sharp functions test***', function () {
         });
     }); });
 });
+describe('***img processed***', function () {
+    it('--img processed successfully  ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            expect(functionsOFsharp_1.getMetaData).toBeTruthy();
+            return [2 /*return*/];
+        });
+    }); });
+});

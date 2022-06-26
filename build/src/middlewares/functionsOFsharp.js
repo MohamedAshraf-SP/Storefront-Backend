@@ -70,7 +70,8 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 imgSRC = "assets\\full\\".concat(path, ".png");
-                imgDIST = "assets\\thumb\\".concat(path, ".png");
+                imgDIST = "assets\\thumb\\".concat(path).concat(width, "w-").concat(height, "h.png");
+                console.log(imgDIST);
                 return [4 /*yield*/, (0, sharp_1.default)(imgSRC)
                         .resize({
                         height: height,
@@ -79,10 +80,10 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
                         .toFile(imgDIST)];
             case 1:
                 _a.sent();
-                return [2 /*return*/, true];
+                return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();
-                console.log("\n\n\n".concat(error_2, "\n\n\n"));
+                console.log("\nxxxxxxxxx\n\n".concat(error_2, "\nxxxxxxxxxx\n\n"));
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -90,15 +91,20 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
 }); };
 exports.resizeImg = resizeImg;
 var checkIfExists = function (req, res, height, width, path) {
-    var imgDIST = "assets\\thumb\\".concat(path, ".png");
-    console.log('\n\n\n--from check----------\n\n\n');
-    if (fs_1.default.existsSync(imgDIST)) {
-        res.locals.imgDIST = imgDIST;
-        console.log('\n\n\n-true exist\n\n\n');
+    try {
+        var imgDIST = "assets\\thumb\\".concat(path).concat(width, "w-").concat(height, "h.png");
+        console.log('\n\n\n--from check-');
+        if (fs_1.default.existsSync(imgDIST)) {
+            res.locals.imgDIST = imgDIST;
+            console.log('\n\n\n-the image exists\n\n\n');
+        }
+        else {
+            (0, exports.resizeImg)(req, res, height, width, path);
+            console.log('\n\n\n-the new image created\n\n\n');
+        }
     }
-    else {
-        (0, exports.resizeImg)(req, res, height, width, path);
-        console.log('\n\n\n-false exist\n\n\n');
+    catch (error) {
+        console.log("\nxxxxerr in if existxxxxx\n\n".concat(error, "\nxxxxxxxxxx\n\n"));
     }
 };
 exports.checkIfExists = checkIfExists;

@@ -18,9 +18,9 @@ route.get('/', resize, (req, res) => {
   };
   //console.log('\nEnd point started...\n',res.locals.metadata);
 
-  res.status(200);
+  
   res.json(Object.assign(obj));
-
+  res.status(200);
   //console.log('\nEnd point finished...\n',(res.locals.imgDIST));
 });
 

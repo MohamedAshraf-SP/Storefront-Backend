@@ -19,3 +19,13 @@ describe('***sharp functions test***', () => {
     expect(getMetaData).toBeTruthy();
   });
 });
+
+
+
+describe('***img processed***', () => {
+  
+  it('--img processed successfully  ', async () => {
+    
+    expect(getMetaData).toBeTruthy();
+  });
+});

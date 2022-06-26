@@ -38,7 +38,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resize = void 0;
 var functionsOFsharp_1 = require("./functionsOFsharp");
-var resize = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+var resize = function (req, res, 
+// eslint-disable-next-line @typescript-eslint/ban-types
+next) { return __awaiter(void 0, void 0, void 0, function () {
     var height, width, path, metadata;
     return __generator(this, function (_a) {
         height = parseInt(req.query.height);

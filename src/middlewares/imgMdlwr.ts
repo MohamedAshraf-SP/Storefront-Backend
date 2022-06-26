@@ -4,7 +4,8 @@ import { getMetaData, checkIfExists } from './functionsOFsharp';
 export const resize = async (
   req: express.Request,
   res: express.Response,
-  next
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  next : Function
 ) => {
   const height: number = parseInt(req.query.height as string);
   const width: number = parseInt(req.query.width as string);

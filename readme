@@ -1,6 +1,6 @@
-api example:
+***api example:**
 
-http://localhost:3000/api/image/?height=10000&width=20000&path=mo.png
+http://localhost:3000/api/image/?height=100&width=200&path=mo
 
 hight => the new  hight
 
@@ -15,3 +15,13 @@ path => PNG img name from "assets/full" folder
 
 
 -------------------------------
+
+**after review**
+
+: error if not found appers in console
+: link in readme is corrected 
+: saves new image with new width and height
+:   **My endpoint checker ***
+    √ --Check If status code is 200
+
+:
