@@ -6,9 +6,7 @@ import {
 import { resize } from '../middlewares/imgMdlwr';
 
 describe('***sharp functions test***', () => {
-  it('--Check If IMG Exists', async () => {
-    expect(checkIfExists).toBeTruthy();
-  });
+ 
   it('--operation done ', async () => {
     expect(resize).toBeTruthy();
   });
