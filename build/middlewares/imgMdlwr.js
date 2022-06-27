@@ -49,13 +49,19 @@ next) { return __awaiter(void 0, void 0, void 0, function () {
                 width = req.query.width;
                 path = req.query.path;
                 console.log(height, path, width);
-                if (!((path === undefined || null) || (width === undefined || null) || (height === undefined || null))) return [3 /*break*/, 1];
+                if (!(path === undefined ||
+                    null ||
+                    width === undefined ||
+                    null ||
+                    height === undefined ||
+                    null)) return [3 /*break*/, 1];
                 return [2 /*return*/, res
                         .status(400)
                         .send("<h1>Error:: Bad request, all query parameter are required.</h1>")];
             case 1:
                 if (!(isNaN(width) || isNaN(height))) return [3 /*break*/, 2];
-                return [2 /*return*/, res.status(400)
+                return [2 /*return*/, res
+                        .status(400)
                         .send("<h1><i>Error::</i> Bad request, query parameter are not valid.</h1>")];
             case 2:
                 if (!(0, functionsOFsharp_1.checkIfExists)(req, res, height, width, path)) return [3 /*break*/, 6];
@@ -73,7 +79,8 @@ next) { return __awaiter(void 0, void 0, void 0, function () {
                 return [3 /*break*/, 6];
             case 5:
                 error_1 = _a.sent();
-                return [2 /*return*/, res.status(400)
+                return [2 /*return*/, res
+                        .status(400)
                         .send("<h1><b>Error::</i> in img processing may be file with this name not found</h1>")];
             case 6:
                 // else{

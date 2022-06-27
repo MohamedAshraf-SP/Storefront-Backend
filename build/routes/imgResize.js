@@ -7,5 +7,6 @@ var express_1 = __importDefault(require("express"));
 var imgMdlwr_1 = require("../middlewares/imgMdlwr");
 var route = express_1.default.Router();
 route.get('/', imgMdlwr_1.resize, function (req, res) {
+    res.status(200);
 });
 exports.default = route;

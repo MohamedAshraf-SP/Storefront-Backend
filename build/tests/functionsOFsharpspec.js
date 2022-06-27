@@ -35,27 +35,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var supertest_1 = __importDefault(require("supertest"));
-var server_1 = __importDefault(require("../server"));
-var req = (0, supertest_1.default)(server_1.default);
-// eslint-disable-next-line @typescript-eslint/ban-types
-describe('***My endpoint checker ***', function () {
-    it('--Check If status code is 200', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var res, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    res = req.get('/api/image');
-                    _a = expect;
-                    return [4 /*yield*/, res];
-                case 1:
-                    _a.apply(void 0, [(_b.sent()).status]).toBe(400);
-                    return [2 /*return*/];
-            }
+var functionsOFsharp_1 = require("../middlewares/functionsOFsharp");
+var imgMdlwr_1 = require("../middlewares/imgMdlwr");
+describe('***sharp functions test***', function () {
+    it('--operation done ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            expect(imgMdlwr_1.resize).toBeTruthy();
+            return [2 /*return*/];
+        });
+    }); });
+    it('--Img process ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            expect(functionsOFsharp_1.resizeImg).toBeTruthy();
+            return [2 /*return*/];
+        });
+    }); });
+    it('--Meta data reached end  ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            expect(functionsOFsharp_1.getMetaData).toBeTruthy();
+            return [2 /*return*/];
+        });
+    }); });
+});
+describe('***img processed***', function () {
+    it('--img processed successfully  ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            expect(functionsOFsharp_1.resizeImg).toBeTruthy();
+            return [2 /*return*/];
         });
     }); });
 });

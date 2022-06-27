@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "npx tsc && nodemon ./build/src/server.js",
+    "start": "npx tsc && nodemon ./build/server.js",
     "dev": " npx nodemon src/server.ts",
     "prettier": " prettier --config .prettierrc \"src/**/*.ts\" --write",
     "lint": "npx eslint \"src/**/*.ts\" ",

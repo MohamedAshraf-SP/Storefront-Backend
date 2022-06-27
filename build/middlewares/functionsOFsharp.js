@@ -82,6 +82,7 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
             case 2:
                 error_2 = _a.sent();
                 console.log("Error in resize:\nxxxxxxxxxx\n\n".concat(error_2, "\nxxxxxxxxxx\n\n"));
+                res.status;
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
@@ -104,14 +105,14 @@ exports.checkIfExists = checkIfExists;
 var render = function (req, res, height, width, path) {
     var imgDir = path_1.default.join(__dirname, '..', '..', 'assets', 'thumb', "".concat(path).concat(width, "w-").concat(height, "h.png"));
     console.log('img dir', imgDir);
-    console.log("\nfs.existsSync(imgDir)   ", fs_1.default.existsSync(imgDir));
+    console.log('\nfs.existsSync(imgDir)   ', fs_1.default.existsSync(imgDir));
     if (fs_1.default.existsSync(imgDir)) {
         res.status(200);
         res.sendFile(imgDir);
-        console.log("--Image found");
+        console.log('--Image found');
     }
     else {
-        console.log("--Image not found");
+        console.log('--Image not found');
         throw new Error('x');
     }
 };

@@ -12,6 +12,7 @@ export const getMetaData = async (
     const metadata = await sharp(`assets\\full\\${path}.png`).metadata();
   } catch (error) {
     console.log(`\n--Error occurred during getting meta data: ${error}\n`);
+    
   }
   return true;
 };
@@ -35,6 +36,7 @@ export const resizeImg = async (
       .toFile(imgDIST);
   } catch (error) {
     console.log(`Error in resize:\nxxxxxxxxxx\n\n${error}\nxxxxxxxxxx\n\n`);
+    res.status
   }
 };
 
@@ -43,7 +45,7 @@ export const checkIfExists = (
   res: express.Response,
   height: number,
   width: number,
-  imgSRC: string = `assets\\full\\${req.query.path}.png`
+  imgSRC = `assets\\full\\${req.query.path}.png`
 ): boolean => {
   console.log('\n--check-');
 
@@ -67,6 +69,7 @@ export const render = (
     __dirname,
     '..',
     '..',
+   
     'assets',
     'thumb',
     `${path}${width}w-${height}h.png`
