@@ -18,7 +18,7 @@ app.use((0, morgan_1.default)('dev'));
 app.use('/api/image/', imgResize_1.default);
 // server listening
 app.listen(port, function () {
-    console.log('this is my server running on PORT: ', port);
+    console.log('this is my server running on PORT: ');
 });
 //
 //app.use (bodyParser)

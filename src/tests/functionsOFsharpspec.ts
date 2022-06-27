@@ -6,7 +6,6 @@ import {
 import { resize } from '../middlewares/imgMdlwr';
 
 describe('***sharp functions test***', () => {
- 
   it('--operation done ', async () => {
     expect(resize).toBeTruthy();
   });
@@ -18,12 +17,8 @@ describe('***sharp functions test***', () => {
   });
 });
 
-
-
 describe('***img processed***', () => {
-  
   it('--img processed successfully  ', async () => {
-    
     expect(getMetaData).toBeTruthy();
   });
 });

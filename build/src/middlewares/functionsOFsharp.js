@@ -39,9 +39,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkIfExists = exports.resizeImg = exports.getMetaData = void 0;
+exports.render = exports.checkIfExists = exports.resizeImg = exports.getMetaData = void 0;
 var sharp_1 = __importDefault(require("sharp"));
 var fs_1 = __importDefault(require("fs"));
+var path_1 = __importDefault(require("path"));
 var getMetaData = function (req, res, path) { return __awaiter(void 0, void 0, void 0, function () {
     var metadata, error_1;
     return __generator(this, function (_a) {
@@ -51,12 +52,10 @@ var getMetaData = function (req, res, path) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, (0, sharp_1.default)("assets\\full\\".concat(path, ".png")).metadata()];
             case 1:
                 metadata = _a.sent();
-                console.log(metadata);
-                res.locals.metadata = metadata;
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
-                console.log("\n\n\n ---An error occurred during getting meta data: ".concat(error_1, "\n\n\n"));
+                console.log("\n--Error occurred during getting meta data: ".concat(error_1, "\n"));
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/, true];
         }
@@ -71,7 +70,6 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
                 _a.trys.push([0, 2, , 3]);
                 imgSRC = "assets\\full\\".concat(path, ".png");
                 imgDIST = "assets\\thumb\\".concat(path).concat(width, "w-").concat(height, "h.png");
-                console.log(imgDIST);
                 return [4 /*yield*/, (0, sharp_1.default)(imgSRC)
                         .resize({
                         height: height,
@@ -83,28 +81,45 @@ var resizeImg = function (req, res, height, width, path) { return __awaiter(void
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();
-                console.log("\nxxxxxxxxx\n\n".concat(error_2, "\nxxxxxxxxxx\n\n"));
+                console.log("Error in resize:\nxxxxxxxxxx\n\n".concat(error_2, "\nxxxxxxxxxx\n\n"));
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
 exports.resizeImg = resizeImg;
-var checkIfExists = function (req, res, height, width, path) {
-    try {
-        var imgDIST = "assets\\thumb\\".concat(path).concat(width, "w-").concat(height, "h.png");
-        console.log('\n\n\n--from check-');
-        if (fs_1.default.existsSync(imgDIST)) {
-            res.locals.imgDIST = imgDIST;
-            console.log('\n\n\n-the image exists\n\n\n');
-        }
-        else {
-            (0, exports.resizeImg)(req, res, height, width, path);
-            console.log('\n\n\n-the new image created\n\n\n');
-        }
+var checkIfExists = function (req, res, height, width, imgSRC) {
+    if (imgSRC === void 0) { imgSRC = "assets\\full\\".concat(req.query.path, ".png"); }
+    console.log('\n--check-');
+    if (!fs_1.default.existsSync(imgSRC)) {
+        console.log('\n-the image exists');
+        return true;
     }
-    catch (error) {
-        console.log("\nxxxxerr in if existxxxxx\n\n".concat(error, "\nxxxxxxxxxx\n\n"));
+    else {
+        console.log('\n-the not image exists');
+        return false;
     }
 };
 exports.checkIfExists = checkIfExists;
+var render = function (req, res, height, width, path) {
+    var imgDir = path_1.default.join(__dirname, '..', '..', 'assets', 'thumb', "".concat(path).concat(width, "w-").concat(height, "h.png"));
+    console.log('img dir', imgDir);
+    console.log("\nfs.existsSync(imgDir)   ", fs_1.default.existsSync(imgDir));
+    if (fs_1.default.existsSync(imgDir)) {
+        res.status(200);
+        res.sendFile(imgDir);
+        console.log("--Image found");
+    }
+    else {
+        console.log("--Image not found");
+        throw new Error('x');
+    }
+};
+exports.render = render;
+// try {
+//   resizeImg(req, res, height, width, path);
+//   console.log('\n\n-the new image created\n\n');
+// }catch (error) {
+//   console.log(`\nxxxxxxxxxx\nError in if exist\n\n${error}\nxxxxxxxxxx\n\n`);
+//   res.status(400).json(error)
+// }

@@ -53,7 +53,7 @@ describe('***My endpoint checker ***', function () {
                     _a = expect;
                     return [4 /*yield*/, res];
                 case 1:
-                    _a.apply(void 0, [(_b.sent()).status]).toBe(200);
+                    _a.apply(void 0, [(_b.sent()).status]).toBe(400);
                     return [2 /*return*/];
             }
         });

@@ -41,20 +41,51 @@ var functionsOFsharp_1 = require("./functionsOFsharp");
 var resize = function (req, res, 
 // eslint-disable-next-line @typescript-eslint/ban-types
 next) { return __awaiter(void 0, void 0, void 0, function () {
-    var height, width, path, metadata;
+    var height, width, path, metadata, error_1;
     return __generator(this, function (_a) {
-        height = parseInt(req.query.height);
-        width = parseInt(req.query.width);
-        path = req.query.path;
-        metadata = (0, functionsOFsharp_1.getMetaData)(req, res, path);
-        console.log(metadata);
-        //check and resize
-        (0, functionsOFsharp_1.checkIfExists)(req, res, height, width, path);
-        //req.query.height  = 21 as unknown as string;
-        //console.log('AfterEditing W:', req.query.height , 'H:', width);
-        // console.log('\nMdlware finished...\n');
-        next();
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                height = req.query.height;
+                width = req.query.width;
+                path = req.query.path;
+                console.log(height, path, width);
+                if (!((path === undefined || null) || (width === undefined || null) || (height === undefined || null))) return [3 /*break*/, 1];
+                return [2 /*return*/, res
+                        .status(400)
+                        .send("<h1>Error:: Bad request, all query parameter are required.</h1>")];
+            case 1:
+                if (!(isNaN(width) || isNaN(height))) return [3 /*break*/, 2];
+                return [2 /*return*/, res.status(400)
+                        .send("<h1><i>Error::</i> Bad request, query parameter are not valid.</h1>")];
+            case 2:
+                if (!(0, functionsOFsharp_1.checkIfExists)(req, res, height, width, path)) return [3 /*break*/, 6];
+                height = parseInt(req.query.height);
+                width = parseInt(req.query.width);
+                metadata = (0, functionsOFsharp_1.getMetaData)(req, res, path);
+                console.log(metadata);
+                _a.label = 3;
+            case 3:
+                _a.trys.push([3, 5, , 6]);
+                return [4 /*yield*/, (0, functionsOFsharp_1.resizeImg)(req, res, height, width, path)];
+            case 4:
+                _a.sent();
+                (0, functionsOFsharp_1.render)(req, res, height, width, path);
+                return [3 /*break*/, 6];
+            case 5:
+                error_1 = _a.sent();
+                return [2 /*return*/, res.status(400)
+                        .send("<h1><b>Error::</i> in img processing may be file with this name not found</h1>")];
+            case 6:
+                // else{
+                //   return res.status(404)
+                //     .send(`<h1>There is no img to be processed with this name in the full directoury</h1>`);
+                // }
+                //req.query.height  = 21 as unknown as string;
+                //console.log(`<h1>AfterEditing W:`<h1>, req.query.height , `<h1>H:`<h1>, width);
+                // console.log(`<h1>\nMdlware finished...\n`<h1>);
+                next();
+                return [2 /*return*/];
+        }
     });
 }); };
 exports.resize = resize;

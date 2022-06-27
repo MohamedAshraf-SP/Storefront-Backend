@@ -17,7 +17,7 @@ app.use('/api/image/', route);
 
 // server listening
 app.listen(port, () => {
-  console.log('this is my server running on PORT: ', port);
+  console.log('this is my server running on PORT: ');
 });
 
 //
