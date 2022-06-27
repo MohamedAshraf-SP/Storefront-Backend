@@ -45,13 +45,15 @@ var req = (0, supertest_1.default)(server_1.default);
 // eslint-disable-next-line @typescript-eslint/ban-types
 describe('***My endpoint checker ***', function () {
     it('--Check If status code is 200', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var res;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, req.get('/api/image')];
+        var res, _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    res = req.get('/api/image');
+                    _a = expect;
+                    return [4 /*yield*/, res];
                 case 1:
-                    res = _a.sent();
-                    expect((res).status).toBeDefined;
+                    _a.apply(void 0, [(_b.sent()).status]).toBe(200);
                     return [2 /*return*/];
             }
         });
