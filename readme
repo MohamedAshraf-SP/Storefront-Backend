@@ -1,27 +1,83 @@
-***api example:**
-
-http://localhost:3000/api/image/?height=100&width=200&path=mo
-
-hight => the new  hight
-
-width=> the new width
-
-path => PNG img name from "assets/full" folder
-
--NEW IMAGE IS saved into "assets/thumb" folder
-
--image with the same name in the "assets/thumb" folder wont be processed again
+### env variables ####
 
 
+PORT
+PG_HOST
+PG_DB
+PG_DB_test
 
--------------------------------
+PG_USER
+PG_PASSWORD
+ENV=dev
 
-**after review**
+pepper
+SALTROUNDS
+code 
 
-: error if not found appers in console
-: link in readme is corrected 
-: saves new image with new width and height
-:   **My endpoint checker ***
-    √ --Check If status code is 200
 
-:
+
+### end points 
+
+    post man file is attached in the project with name "postman_api"
+
+
+### products
+
+    id:Number,
+    name:String,
+    price:Number
+
+
+### users 
+
+    id:Number,
+    fristName:String,
+    lastName:String,
+    password:String
+
+
+### orders
+
+    id:Number,
+    name:String,
+    status:String,
+    date:Date,
+    user_id:String,
+    product_id:String
+
+
+## notes
+
+    - passwords hashed
+    - all crud operations for all schemas
+
+
+### run tests 
+    npm run test
+    npm run jasmine
+
+### run project in dev
+    npm run dev
+
+### run server 
+
+    npm run build
+
+
+### run prettier 
+
+    npm run prettier
+
+
+### run lint
+
+    npm run lint
+
+### run lintFiX
+
+    npm run lintfx
+
+
+### packages
+
+    in pachage.json file 

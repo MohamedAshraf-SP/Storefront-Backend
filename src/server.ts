@@ -1,23 +1,33 @@
 //libs
 import express from 'express';
 import morgan from 'morgan';
-import route from './routes/imgResize';
-//import cors from 'cors'
+import productsRoute from './routes/products';
+import usersRoute from './routes/users';
+import ordersRoute from './routes/orders';
+import authRoute from './routes/auth';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 //declaring app
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-//middlewares
+//middlewares database
+//app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
+app.use(cors());
 
 //app.use(cors)
 app.use(morgan('dev'));
 //app.use(morgan("common"))
-app.use('/api/image/', route);
+app.use('/api/store/', productsRoute);
+app.use('/api/store/', usersRoute);
+app.use('/api/store/', ordersRoute);
+app.use('/api/store/', authRoute);
 
 // server listening
 app.listen(port, () => {
-  console.log('this is my server running on PORT: ');
+  console.log(`this is my server running on PORT: ${port} `);
 });
 
 //

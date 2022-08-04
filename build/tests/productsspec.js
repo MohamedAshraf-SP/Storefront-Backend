@@ -36,32 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var functionsOFsharp_1 = require("../middlewares/functionsOFsharp");
-var imgMdlwr_1 = require("../middlewares/imgMdlwr");
-describe('***sharp functions test***', function () {
-    it('--operation done ', function () { return __awaiter(void 0, void 0, void 0, function () {
+var products_1 = require("../models/products");
+var crud = new products_1.productCRUD();
+describe('***functions test***', function () {
+    it('--index is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(imgMdlwr_1.resize).toBeTruthy();
+            expect(crud.index).toBeDefined();
             return [2 /*return*/];
         });
     }); });
-    it('--Img process ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--show is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(functionsOFsharp_1.resizeImg).toBeTruthy();
+            expect(crud.show).toBeDefined();
             return [2 /*return*/];
         });
     }); });
-    it('--Meta data reached end  ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--create is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(functionsOFsharp_1.getMetaData).toBeTruthy();
+            expect(crud.create).toBeDefined();
             return [2 /*return*/];
         });
     }); });
-});
-describe('***img processed***', function () {
-    it('--img processed successfully  ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--edit is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(functionsOFsharp_1.resizeImg).toBeTruthy();
+            expect(crud.edit).toBeDefined();
+            return [2 /*return*/];
+        });
+    }); });
+    it('--delete is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            expect(crud.delete).toBeDefined();
             return [2 /*return*/];
         });
     }); });
