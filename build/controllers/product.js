@@ -47,14 +47,7 @@ var index = function (req, res, next) { return __awaiter(void 0, void 0, void 0,
     var result;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                try {
-                    jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
-                }
-                catch (error) {
-                    res.status(401).json({ error: 'invalid token', err: error });
-                }
-                return [4 /*yield*/, crud.index()];
+            case 0: return [4 /*yield*/, crud.index()];
             case 1:
                 result = _a.sent();
                 res.send(result);
@@ -68,14 +61,7 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                try {
-                    jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
-                }
-                catch (error) {
-                    res.status(401).json({ error: 'invalid token', err: error });
-                }
-                return [4 /*yield*/, crud.show(req.params.id)];
+            case 0: return [4 /*yield*/, crud.show(req.params.id)];
             case 1:
                 product = _a.sent();
                 //console.log(x)
@@ -145,12 +131,6 @@ var deletee = function (req, res, next) { return __awaiter(void 0, void 0, void 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                try {
-                    jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
-                }
-                catch (error) {
-                    res.status(401).json({ error: 'invalid token', err: error });
-                }
                 console.log('delete');
                 return [4 /*yield*/, crud.delete(req.params.id)];
             case 1:

@@ -35,34 +35,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var users_1 = require("../models/users");
 var crud = new users_1.usersCRUD();
 var auth = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var password, product, token_1;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                password = req.body.password;
-                console.log(password);
-                return [4 /*yield*/, crud.auth(req.params.id, password)];
-            case 1:
-                product = _a.sent();
-                if (product) {
-                    token_1 = jsonwebtoken_1.default.sign(req.params.id, process.env.JWTsecret);
-                    res.json(token_1);
-                }
-                res.json(null);
-                //res.json({"massage":"authed"})
-                //.json(res)
-                next();
-                return [2 /*return*/];
-        }
+        //auth removed as mentioned in reviwe
+        // const password = req.body.password;
+        // console.log(password);
+        // const product = await crud.auth(req.params.id, password);
+        // if (product) {
+        //   let token = jwt.sign(req.params.id, process.env.JWTsecret as string);
+        //   res.json(token);
+        // }
+        res.json(null);
+        //res.json({"massage":"authed"})
+        //.json(res)
+        next();
+        return [2 /*return*/];
     });
 }); };
 exports.auth = auth;

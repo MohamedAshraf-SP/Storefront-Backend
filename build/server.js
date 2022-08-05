@@ -16,7 +16,7 @@ var cors_1 = __importDefault(require("cors"));
 //declaring app
 var app = (0, express_1.default)();
 var port = process.env.PORT || 3000;
-//middlewares database
+//middleware database
 //app.use(bodyParser.urlencoded({ extended: true }))
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)());

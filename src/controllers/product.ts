@@ -9,11 +9,6 @@ export const index = async (
   res: express.Response,
   next: Function
 ) => {
-  try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
-  } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
-  }
 
   let result = await crud.index();
   res.send(result);
@@ -25,11 +20,7 @@ export const show = async (
   res: express.Response,
   next: Function
 ) => {
-  try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
-  } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
-  }
+ 
   // const x:string=req.query.id as string
   // req.params.id=x
   const product = await crud.show(req.params.id);
@@ -94,11 +85,7 @@ export const deletee = async (
   res: express.Response,
   next: Function
 ) => {
-  try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
-  } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
-  }
+
   console.log('delete');
   const deleted = await crud.delete(req.params.id);
   res.json({ massage: 'deleted' });
