@@ -52,8 +52,7 @@ var index = function (req, res, next) { return __awaiter(void 0, void 0, void 0,
                     jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
                 }
                 catch (error) {
-                    res.status(401).json({ "error": "invalid token",
-                        "err": error });
+                    res.status(401).json({ error: 'invalid token', err: error });
                 }
                 return [4 /*yield*/, crud.index()];
             case 1:
@@ -74,12 +73,9 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                     jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
                 }
                 catch (error) {
-                    res.status(401).json({ "error": "invalid token",
-                        "err": error });
+                    res.status(401).json({ error: 'invalid token', err: error });
                 }
-                return [4 /*yield*/, crud.show(req.params.id)
-                    //console.log(x)
-                ];
+                return [4 /*yield*/, crud.show(req.params.id)];
             case 1:
                 product = _a.sent();
                 //console.log(x)
@@ -100,15 +96,14 @@ var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                     jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
                 }
                 catch (error) {
-                    res.status(401).json({ "error": "invalid token",
-                        "err": error });
+                    res.status(401).json({ error: 'invalid token', err: error });
                 }
                 name_1 = req.body.name;
                 price = req.body.price;
                 return [4 /*yield*/, crud.create(name_1, price)];
             case 1:
                 neworder = _a.sent();
-                res.json({ "massage": "created" });
+                res.json({ massage: 'created' });
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _a.sent();
@@ -132,14 +127,13 @@ var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                     jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
                 }
                 catch (error) {
-                    res.status(401).json({ "error": "invalid token",
-                        "err": error });
+                    res.status(401).json({ error: 'invalid token', err: error });
                 }
                 return [4 /*yield*/, crud.edit(req.query.id, req.body.name, req.body.price)];
             case 1:
                 edited = _a.sent();
                 console.log();
-                res.json({ "massage": "edited" });
+                res.json({ massage: 'edited' });
                 next();
                 return [2 /*return*/];
         }
@@ -155,14 +149,13 @@ var deletee = function (req, res, next) { return __awaiter(void 0, void 0, void 
                     jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
                 }
                 catch (error) {
-                    res.status(401).json({ "error": "invalid token",
-                        "err": error });
+                    res.status(401).json({ error: 'invalid token', err: error });
                 }
-                console.log("delete");
+                console.log('delete');
                 return [4 /*yield*/, crud.delete(req.params.id)];
             case 1:
                 deleted = _a.sent();
-                res.json({ "massage": "deleted" });
+                res.json({ massage: 'deleted' });
                 next();
                 return [2 /*return*/];
         }

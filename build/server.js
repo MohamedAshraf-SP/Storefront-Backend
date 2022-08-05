@@ -10,6 +10,7 @@ var products_1 = __importDefault(require("./routes/products"));
 var users_1 = __importDefault(require("./routes/users"));
 var orders_1 = __importDefault(require("./routes/orders"));
 var auth_1 = __importDefault(require("./routes/auth"));
+var product_order_1 = __importDefault(require("./routes/product_order"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var cors_1 = __importDefault(require("cors"));
 //declaring app
@@ -26,6 +27,7 @@ app.use('/api/store/', products_1.default);
 app.use('/api/store/', users_1.default);
 app.use('/api/store/', orders_1.default);
 app.use('/api/store/', auth_1.default);
+app.use('/api/store/', product_order_1.default);
 // server listening
 app.listen(port, function () {
     console.log("this is my server running on PORT: ".concat(port, " "));

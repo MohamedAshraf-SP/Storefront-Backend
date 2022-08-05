@@ -39,12 +39,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ordersCRUD = void 0;
+exports.product_orderCRUD = void 0;
 var database_1 = __importDefault(require("./../database"));
-var ordersCRUD = /** @class */ (function () {
-    function ordersCRUD() {
+var product_orderCRUD = /** @class */ (function () {
+    function product_orderCRUD() {
     }
-    ordersCRUD.prototype.index = function () {
+    product_orderCRUD.prototype.index = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, q, result, err_1;
             return __generator(this, function (_a) {
@@ -52,7 +52,7 @@ var ordersCRUD = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
                         conn = database_1.default.connect();
-                        q = 'select * from orders';
+                        q = 'SELECT * FROM products INNER JOIN product_order ON products.id = product_order.product_id;';
                         return [4 /*yield*/, conn];
                     case 1: return [4 /*yield*/, (_a.sent()).query(q)];
                     case 2:
@@ -70,7 +70,7 @@ var ordersCRUD = /** @class */ (function () {
             });
         });
     };
-    ordersCRUD.prototype.show = function (id) {
+    product_orderCRUD.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, q, result, err_2;
             return __generator(this, function (_a) {
@@ -78,12 +78,13 @@ var ordersCRUD = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
                         conn = database_1.default.connect();
-                        q = "select * from orders where id=".concat(id);
+                        q = "SELECT PRODUCTS.* FROM products  JOIN product_order ON   product_order.product_id = products.id   where product_order.order_id = ".concat(id, ";");
                         return [4 /*yield*/, conn];
                     case 1:
                         result = (_a.sent()).query(q);
                         return [4 /*yield*/, conn];
                     case 2:
+                        // console.log((await result).rows)
                         (_a.sent()).release();
                         return [4 /*yield*/, result];
                     case 3: return [2 /*return*/, (_a.sent()).rows];
@@ -96,7 +97,7 @@ var ordersCRUD = /** @class */ (function () {
             });
         });
     };
-    ordersCRUD.prototype.create = function (name, status, user_id, product_id) {
+    product_orderCRUD.prototype.create = function (order_id, product_id) {
         return __awaiter(this, void 0, void 0, function () {
             var date, conn, q, result, err_3;
             return __generator(this, function (_a) {
@@ -108,7 +109,7 @@ var ordersCRUD = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        q = " INSERT INTO orders (name,status,date,user_id) VALUES ('".concat(name, "','").concat(status, "','").concat(date, "',").concat(user_id, ")");
+                        q = " INSERT INTO product_order (order_id,product_id) VALUES ('".concat(order_id, "','").concat(product_id, "')");
                         return [4 /*yield*/, conn.query(q)];
                     case 2:
                         result = _a.sent();
@@ -123,57 +124,6 @@ var ordersCRUD = /** @class */ (function () {
             });
         });
     };
-    ordersCRUD.prototype.edit = function (id, name, status) {
-        return __awaiter(this, void 0, void 0, function () {
-            var date, conn, q, result, err_4;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        date = new Date().toISOString();
-                        return [4 /*yield*/, database_1.default.connect()];
-                    case 1:
-                        conn = _a.sent();
-                        q = "UPDATE orders SET name = '".concat(name, "', status = '").concat(status, "',date ='").concat(date, "' WHERE id=").concat(id);
-                        return [4 /*yield*/, conn.query(q)];
-                    case 2:
-                        result = _a.sent();
-                        conn.release();
-                        return [2 /*return*/, result.rows[0]];
-                    case 3:
-                        err_4 = _a.sent();
-                        console.log(err_4);
-                        throw new Error("".concat(err_4));
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ordersCRUD.prototype.delete = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var conn, q, result, err_5;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1.default.connect()];
-                    case 1:
-                        conn = _a.sent();
-                        q = "delete from orders where id=".concat(id);
-                        return [4 /*yield*/, conn.query(q)];
-                    case 2:
-                        result = _a.sent();
-                        conn.release();
-                        return [2 /*return*/, result.rows];
-                    case 3:
-                        err_5 = _a.sent();
-                        console.log(err_5);
-                        throw new Error("".concat(err_5));
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    return ordersCRUD;
+    return product_orderCRUD;
 }());
-exports.ordersCRUD = ordersCRUD;
+exports.product_orderCRUD = product_orderCRUD;

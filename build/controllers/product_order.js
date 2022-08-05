@@ -39,11 +39,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletee = exports.edit = exports.create = exports.show = exports.index = void 0;
+exports.create = exports.show = exports.index = void 0;
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var users_1 = require("../models/users");
-var crud = new users_1.usersCRUD();
+var product_order_1 = require("../models/product_order");
+var crud = new product_order_1.product_orderCRUD();
 var index = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var result;
     return __generator(this, function (_a) {
@@ -89,7 +89,7 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
 }); };
 exports.show = show;
 var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var fristName, lastName, password, token, hash, neworder, err_1;
+    var product_id, order_id, token, hash, neworder, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -102,12 +102,11 @@ var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                fristName = req.body.fristName;
-                lastName = req.body.lastName;
-                password = req.body.password;
-                token = jsonwebtoken_1.default.sign({ fristName: fristName, lastName: lastName }, process.env.JWTsecret);
+                product_id = req.params.pid;
+                order_id = req.params.oid;
+                token = jsonwebtoken_1.default.sign({ order_id: order_id, product_id: product_id }, process.env.JWTsecret);
                 hash = bcrypt_1.default.hashSync(req.body.password + process.env.pepper, parseInt(process.env.SALTROUNDS));
-                return [4 /*yield*/, crud.create(fristName, lastName, hash)];
+                return [4 /*yield*/, crud.create(order_id, product_id)];
             case 2:
                 neworder = _a.sent();
                 res.json({ massage: 'created', token: token });
@@ -124,48 +123,43 @@ var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.create = create;
-var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var hash, edited;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                try {
-                    jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
-                }
-                catch (error) {
-                    res.status(401).json({ error: 'invalid token', err: error });
-                }
-                hash = bcrypt_1.default.hashSync(req.body.password + process.env.pepper, parseInt(process.env.SALTROUNDS));
-                console.log(hash);
-                return [4 /*yield*/, crud.edit(req.query.id, req.body.fristName, req.body.lastName, hash)];
-            case 1:
-                edited = _a.sent();
-                console.log();
-                res.json({ massage: 'edited' });
-                next();
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.edit = edit;
-var deletee = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var deleted;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                try {
-                    jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
-                }
-                catch (error) {
-                    res.status(401).json({ error: 'invalid token', err: error });
-                }
-                return [4 /*yield*/, crud.delete(req.params.id)];
-            case 1:
-                deleted = _a.sent();
-                res.json({ massage: 'deleted' });
-                next();
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.deletee = deletee;
+// export const edit = async (
+//   req: express.Request,
+//   res: express.Response,
+//   next: Function
+// ) => {
+//   try {
+//     jwt.verify(req.body.token, process.env.JWTsecret as string);
+//   } catch (error) {
+//     res.status(401).json({ error: 'invalid token', err: error });
+//   }
+//   // console.log( req.query.id as String,req.body.name,req.body.price)
+//   const hash = bcrypt.hashSync(
+//     req.body.password + process.env.pepper,
+//     parseInt(process.env.SALTROUNDS as string)
+//   );
+//   console.log(hash);
+//   const edited = await crud.edit(
+//    req.params.id,
+//    req.body.pid,
+//    req.body.oid
+//   );
+//   console.log();
+//   res.json({ massage: 'edited' });
+//   next();
+// };
+// export const deletee = async (
+//   req: express.Request,
+//   res: express.Response,
+//   next: Function
+// ) => {
+//   try {
+//     jwt.verify(req.body.token, process.env.JWTsecret as string);
+//   } catch (error) {
+//     res.status(401).json({ error: 'invalid token', err: error });
+//   }
+//   // console.log ("delete",req)
+//   const deleted = await crud.delete(req.params.id);
+//   res.json({ massage: 'deleted' });
+//   next();
+// };

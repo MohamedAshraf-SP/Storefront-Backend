@@ -1,7 +1,6 @@
 import express from 'express';
-import { index,show,  create } from '../controllers/product_order';
-import {   deletee } from '../controllers/orders';
-
+import { index, show, create } from '../controllers/product_order';
+import { deletee } from '../controllers/orders';
 
 const product_orderRoute = express.Router();
 

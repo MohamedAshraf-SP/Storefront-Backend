@@ -54,8 +54,6 @@ export const create = async (
   try {
     let product_id: String = req.params.pid;
     let order_id: String = req.params.oid;
-    
-    
 
     let token = jwt.sign(
       { order_id, product_id },

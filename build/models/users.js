@@ -65,7 +65,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.usersCRUD = void 0;
 var database_1 = __importDefault(require("./../database"));
 var bcrypt = __importStar(require("bcrypt"));
-var pepper = (process.env.pepper);
+var pepper = process.env.pepper;
 // create table users (
 //     id SERIAL PRIMARY KEY,
 //     fristName varchar(50) NOT NULL,
