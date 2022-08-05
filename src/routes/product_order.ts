@@ -1,5 +1,5 @@
 import express from 'express';
-import { index,show,  create, edit } from '../controllers/product_order';
+import { index,show,  create } from '../controllers/product_order';
 import {   deletee } from '../controllers/orders';
 
 
@@ -14,7 +14,7 @@ product_orderRoute.get('/order/products/:id', show);
 
 product_orderRoute.post('/order/:oid/product/:pid', create);
 
-product_orderRoute.put('/order/:id', edit);
+//product_orderRoute.put('/order/:id', edit);
 
 product_orderRoute.delete('/order/:id', deletee);
 

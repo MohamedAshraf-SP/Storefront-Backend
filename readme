@@ -1,5 +1,4 @@
-### env variables ####
-
+### env variables
 
 PORT
 PG_HOST
@@ -12,14 +11,11 @@ ENV=dev
 
 pepper
 SALTROUNDS
-code 
+code
 
-
-
-### end points 
+### end points
 
     post man file is attached in the project with name "postman_api"
-
 
 ### products
 
@@ -27,14 +23,12 @@ code
     name:String,
     price:Number
 
-
-### users 
+### users
 
     id:Number,
     fristName:String,
     lastName:String,
     password:String
-
 
 ### orders
 
@@ -43,31 +37,34 @@ code
     status:String,
     date:Date,
     user_id:String,
-    product_id:String
 
+## product_order used in many to many relation
+
+    id,
+    product_id
+    order_id
 
 ## notes
 
     - passwords hashed
     - all crud operations for all schemas
 
+### run tests
 
-### run tests 
     npm run test
     npm run jasmine
 
 ### run project in dev
+
     npm run dev
 
-### run server 
+### run server
 
     npm run build
 
-
-### run prettier 
+### run prettier
 
     npm run prettier
-
 
 ### run lint
 
@@ -77,7 +74,6 @@ code
 
     npm run lintfx
 
-
 ### packages
 
-    in pachage.json file 
+    in pachage.json file
