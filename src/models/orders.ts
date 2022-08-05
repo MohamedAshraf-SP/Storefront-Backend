@@ -5,7 +5,6 @@ export type order = {
   status: String;
   date: Date;
   user_id: String;
-  product_id: String;
 };
 
 export class ordersCRUD {
@@ -46,7 +45,7 @@ export class ordersCRUD {
       const date = new Date().toISOString();
       console.log(date);
       const conn = await client.connect();
-      const q = ` INSERT INTO orders (name,status,date,user_id,product_id) VALUES ('${name}','${status}','${date}',${user_id},${product_id})`;
+      const q = ` INSERT INTO orders (name,status,date,user_id) VALUES ('${name}','${status}','${date}',${user_id})`;
       const result = await conn.query(q);
       conn.release();
       return result.rows;
