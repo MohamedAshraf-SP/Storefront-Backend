@@ -10,8 +10,8 @@
     "prettier": " prettier --config .prettierrc \"src/**/*.ts\" --write",
     "lint": "npx eslint \"src/**/*.ts\" ",
     "lintfx": "npx eslint \"src/**/*.ts\" --fix ",
-    "test": "ENV=test db-migrate --env test up && jasmine && db-migrate db:drop test",
-    "jasmine":"jasmine"
+    "test": "ENV = 'test' db-migrate --env test up & jasmine & db-migrate db:drop test",
+    "jasmine":"npm run build & jasmine"
   },
   "keywords": [],
   "author": "",

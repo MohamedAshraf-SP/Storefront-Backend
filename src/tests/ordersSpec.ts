@@ -1,7 +1,7 @@
-import { product, productCRUD } from '../models/products';
-const crud = new productCRUD();
+import { order, ordersCRUD } from '../models/orders';
+const crud = new ordersCRUD();
 
-describe('***product functions test***', () => {
+describe('***orders functions test***', () => {
   it('--index is defined ', async () => {
     expect(crud.index).toBeDefined();
   });

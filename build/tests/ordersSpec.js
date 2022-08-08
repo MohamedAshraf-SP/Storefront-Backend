@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var products_1 = require("../models/products");
-var crud = new products_1.productCRUD();
-describe('***product functions test***', function () {
+var orders_1 = require("../models/orders");
+var crud = new orders_1.ordersCRUD();
+describe('***orders functions test***', function () {
     it('--index is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             expect(crud.index).toBeDefined();
