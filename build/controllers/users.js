@@ -93,31 +93,23 @@ var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                try {
-                    jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
-                }
-                catch (error) {
-                    res.status(401).json({ error: 'invalid token', err: error });
-                }
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
+                _a.trys.push([0, 2, , 3]);
                 fristName = req.body.fristName;
                 lastName = req.body.lastName;
                 password = req.body.password;
                 token = jsonwebtoken_1.default.sign({ fristName: fristName, lastName: lastName }, process.env.JWTsecret);
                 hash = bcrypt_1.default.hashSync(req.body.password + process.env.pepper, parseInt(process.env.SALTROUNDS));
                 return [4 /*yield*/, crud.create(fristName, lastName, hash)];
-            case 2:
+            case 1:
                 neworder = _a.sent();
                 res.json({ massage: 'created', token: token });
-                return [3 /*break*/, 4];
-            case 3:
+                return [3 /*break*/, 3];
+            case 2:
                 err_1 = _a.sent();
                 res.status(400);
                 res.json(err_1);
-                return [3 /*break*/, 4];
-            case 4:
+                return [3 /*break*/, 3];
+            case 3:
                 next();
                 return [2 /*return*/];
         }

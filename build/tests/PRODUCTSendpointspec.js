@@ -43,11 +43,32 @@ var supertest_1 = __importDefault(require("supertest"));
 var server_1 = __importDefault(require("../server"));
 var tst = (0, supertest_1.default)(server_1.default);
 describe('***My product endpoint checker ***', function () {
-    it("GET all products", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var token;
+    beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
+        var res;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .post('/api/store/user')
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')
+                        .send({
+                        fristName: 'mohamed',
+                        lastName: 'mohamed',
+                        password: 'mo',
+                    })];
+                case 1:
+                    res = _a.sent();
+                    token = res.body.token;
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('GET all products', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get("/api/store/products")];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/products')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -55,11 +76,11 @@ describe('***My product endpoint checker ***', function () {
             }
         });
     }); });
-    it("SHOW a product", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('SHOW a product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get("/api/store/product/31")];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/product/31')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -67,11 +88,11 @@ describe('***My product endpoint checker ***', function () {
             }
         });
     }); });
-    it("DELETE a product", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('DELETE a product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get("/api/store/product/32")];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/product/32')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -79,15 +100,19 @@ describe('***My product endpoint checker ***', function () {
             }
         });
     }); });
-    it("CREATE the product", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('CREATE the product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).post("/api/store/product").send({
-                        "name": "ADDE",
-                        "price": 40,
-                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-                    }).set('Accept', 'application/json').set("Content-Type", "application/json")];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .post('/api/store/product')
+                        .send({
+                        name: 'ADDE',
+                        price: 40,
+                        token: "".concat(token)
+                    })
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -95,15 +120,19 @@ describe('***My product endpoint checker ***', function () {
             }
         });
     }); });
-    it("EDIT the product", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('EDIT the product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).put("/api/store/product/?id=22").send({
-                        "name": "ADDE",
-                        "price": 40,
-                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-                    }).set('Accept', 'application/json').set("Content-Type", "application/json")];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .put('/api/store/product/?id=22')
+                        .send({
+                        name: 'ADDE',
+                        price: 40,
+                        token: "".concat(token)
+                    })
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);

@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { user, usersCRUD } from '../models/users';
+
 const crud = new usersCRUD();
 
 export const index = async (
@@ -46,11 +47,6 @@ export const create = async (
   res: express.Response,
   next: Function
 ) => {
-  try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
-  } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
-  }
   try {
     let fristName: String = req.body.fristName;
     let lastName: String = req.body.lastName;

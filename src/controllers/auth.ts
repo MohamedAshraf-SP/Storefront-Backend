@@ -10,10 +10,7 @@ export const auth = async (
   res: express.Response,
   next: Function
 ) => {
-
-
-//auth removed as mentioned in reviwe
-
+  //auth removed as mentioned in reviwe
 
   // const password = req.body.password;
   // console.log(password);

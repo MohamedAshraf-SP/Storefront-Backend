@@ -9,7 +9,6 @@ export const index = async (
   res: express.Response,
   next: Function
 ) => {
-
   let result = await crud.index();
   res.send(result);
   next();
@@ -20,7 +19,6 @@ export const show = async (
   res: express.Response,
   next: Function
 ) => {
- 
   // const x:string=req.query.id as string
   // req.params.id=x
   const product = await crud.show(req.params.id);
@@ -85,7 +83,6 @@ export const deletee = async (
   res: express.Response,
   next: Function
 ) => {
-
   console.log('delete');
   const deleted = await crud.delete(req.params.id);
   res.json({ massage: 'deleted' });

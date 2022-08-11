@@ -1,62 +1,101 @@
-import {Request} from 'express';
+import { Request } from 'express';
 import supertest from 'supertest';
 import app from '../server';
-import {order, ordersCRUD} from '../models/orders'
-const tst =supertest(app);
+import jwt from 'jsonwebtoken';
+import { order, ordersCRUD } from '../models/orders';
+//import { token } from 'morgan';
+import { request } from 'http';
+
+const tst = supertest(app);
 describe('***My order endpoint checker ***', () => {
-
-    it("GET all orders", async () => {
-        const response = await supertest(app).get("/api/store/orders").send({
-          "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
+  let token: string;
+  beforeAll(async () => {
+    let res = await supertest(app)
+      .post('/api/store/user')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        fristName: 'mohamed',
+        lastName: 'mohamed',
+        password: 'mo',
       });
-      
-        expect(response.status).toBe(200);
-       
-        
-      });
-    it("SHOW a order", async () => {
-        const response = await supertest(app).get("/api/store/order/2").send({
-          "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-      });
-        expect(response.status).toBe(200);
-       
-        
-      });
-    it("DELETE a order", async () => {
-        const response = await supertest(app).get("/api/store/order/2").send({
-          "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-      });
-      
-       expect(response.status).toBe(200);
-       
-        
-     });
-    // it("CREATE the order", async () => {
-    //     const response = await supertest(app).post("/api/store/order").send({
-    //       "name":"order0",
-    //       "status":"created from test",
-    //       "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-    //   }).set('Accept','application/json').set("Content-Type","application/json")
 
-      
-    //     expect(response.status).toBe(200);
-    //     //.log(response)
-        
-    //   });
+    token = res.body.token;
+  });
 
-    //   it("EDIT the order", async () => {
-    //     const response = await supertest(app).put("/api/store/order/3").send({
-    //       "name":"order20",
-    //       "status":"delivered",
-    //       "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-    //   }).set('Accept','application/json').set("Content-Type","application/json")
+  it('GET all orders', async () => {
+    const response = await supertest(app)
+      .get('/api/store/orders')
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .send({
+        token: `${token as string}`,
+      });
 
-      
-    //     expect(response.status).toBe(200);
-    //     //.log(response)
-        
-    //   });
-      
-})
+    expect(response.status).toBe(200);
+  });
+  // it('SHOW a order', async () => {
+  //   const response = await supertest(app)
+  //     .get('/api/store/order/2')
+  //     //.set('Accept', 'application/json')
+  //     //.set('Content-Type', 'application/json')
+  //     .send({
+  //       token: `${token as string}`,
+  //     });
+  //   expect(response.status).toBe(200);
+  // });
+  // it('DELETE a order', async () => {
+  //   const response = await supertest(app)
+  //     .get('/api/store/order/2')
+  //    // .set('Accept', 'application/json')
+  //     //.set('Content-Type', 'application/json')
+  //     .send({
+  //       token: `${token as string}`,
+  //     });
 
-  
+  //   expect(response.status).toBe(200);
+  // });
+
+  // it('SHOW a order', async () => {
+  //   const response = await supertest(app).get('/api/store/order/31');
+
+  //   expect(response.status).toBe(200);
+  // });
+  // it('DELETE a order', async () => {
+  //   const response = await supertest(app).get('/api/store/order/32');
+
+  //   expect(response.status).toBe(200);
+  // });
+
+
+  it('CREATE the order', async () => {
+    const response = await supertest(app)
+      .post('/api/store/order')
+      .send({
+        name: 'String',
+        status: 'String',
+        user_id: 4,
+        token: `${token as string}`,
+      })
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json');
+
+    expect(response.status).toBe(200);
+    //.log(response)
+  });
+
+  it('EDIT the order', async () => {
+    const response = await supertest(app)
+      .put('/api/store/order/3')
+      .send({
+        name: 'order20',
+        status: 'delivered',
+        token: `${token as string}`
+      })
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+
+    expect(response.status).toBe(200);
+    //.log(response)
+  });
+});

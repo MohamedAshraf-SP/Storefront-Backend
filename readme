@@ -13,10 +13,8 @@ pepper
 SALTROUNDS
 code
 
-
-
-
 ### my names:
+
 PG_HOST="localhost"
 PG_DB="project"
 PG_DB_test="second"
@@ -25,20 +23,62 @@ PG_USER="postgres"
 PG_PASSWORD="postgres"
 ENV=dev
 
-
 ### db server port is "5432"
 
 ### DB CREATION
-PORT        : the port to listen on
-PG_HOST     : the local host 
-PG_DB       : the database name
-PG_DB_test  : the database used in tests
-PG_USER     :  the database username
+
+CREATE USER postgres with password '**\*\*\***';
+use user postgres;
+
+psql -h localhost -p 5432 -U postgres postgres
+create database project;
+
+grant all privileges on database project to postgres;
+
+\c project;
+
+#####
+
+create table users (
+id SERIAL PRIMARY KEY,
+fristName varchar(50) NOT NULL,
+lastName varchar(50),
+password varchar(100) NOT NULL
+);
+
+create table products (
+id SERIAL PRIMARY KEY,
+name varchar(100) NOT NULL,
+price integer NOT NULL
+);
+
+create table orders (
+id SERIAL PRIMARY KEY,
+name varchar(100) NOT NULL,
+status VARCHAR(20) NOT NULL,
+date date,
+user_id SERIAL REFERENCES users(id),
+product_id SERIAL REFERENCES products(id)
+);
+
+create table product_order (
+id SERIAL PRIMARY KEY,
+order_id SERIAL REFERENCES orders(id),
+product_id SERIAL REFERENCES products(id)
+);
+
+---
+
+PORT : the port to listen on
+PG_HOST : the local host
+PG_DB : the database name
+PG_DB_test : the database used in tests
+PG_USER : the database username
 PG_PASSWORD : the password for the user "PG_USER"
 
 -these are all variables called from .env file to database.ts file
-- add these variables depending on your enviroment  
 
+- add these variables depending on your enviroment
 
 ### end points
 

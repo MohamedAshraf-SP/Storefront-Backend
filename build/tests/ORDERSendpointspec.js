@@ -43,12 +43,37 @@ var supertest_1 = __importDefault(require("supertest"));
 var server_1 = __importDefault(require("../server"));
 var tst = (0, supertest_1.default)(server_1.default);
 describe('***My order endpoint checker ***', function () {
-    it("GET all orders", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var token;
+    beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
+        var res;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .post('/api/store/user')
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')
+                        .send({
+                        fristName: 'mohamed',
+                        lastName: 'mohamed',
+                        password: 'mo',
+                    })];
+                case 1:
+                    res = _a.sent();
+                    token = res.body.token;
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('GET all orders', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get("/api/store/orders").send({
-                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .get('/api/store/orders')
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')
+                        .send({
+                        token: "".concat(token),
                     })];
                 case 1:
                     response = _a.sent();
@@ -57,13 +82,48 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it("SHOW a order", function () { return __awaiter(void 0, void 0, void 0, function () {
+    // it('SHOW a order', async () => {
+    //   const response = await supertest(app)
+    //     .get('/api/store/order/2')
+    //     //.set('Accept', 'application/json')
+    //     //.set('Content-Type', 'application/json')
+    //     .send({
+    //       token: `${token as string}`,
+    //     });
+    //   expect(response.status).toBe(200);
+    // });
+    // it('DELETE a order', async () => {
+    //   const response = await supertest(app)
+    //     .get('/api/store/order/2')
+    //    // .set('Accept', 'application/json')
+    //     //.set('Content-Type', 'application/json')
+    //     .send({
+    //       token: `${token as string}`,
+    //     });
+    //   expect(response.status).toBe(200);
+    // });
+    // it('SHOW a order', async () => {
+    //   const response = await supertest(app).get('/api/store/order/31');
+    //   expect(response.status).toBe(200);
+    // });
+    // it('DELETE a order', async () => {
+    //   const response = await supertest(app).get('/api/store/order/32');
+    //   expect(response.status).toBe(200);
+    // });
+    it('CREATE the order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get("/api/store/order/2").send({
-                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-                    })];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .post('/api/store/order')
+                        .send({
+                        name: 'String',
+                        status: 'String',
+                        user_id: 4,
+                        token: "".concat(token),
+                    })
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -71,13 +131,19 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it("DELETE a order", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('EDIT the order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get("/api/store/order/2").send({
-                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-                    })];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .put('/api/store/order/3')
+                        .send({
+                        name: 'order20',
+                        status: 'delivered',
+                        token: "".concat(token),
+                    })
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -85,22 +151,4 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    // it("CREATE the order", async () => {
-    //     const response = await supertest(app).post("/api/store/order").send({
-    //       "name":"order0",
-    //       "status":"created from test",
-    //       "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-    //   }).set('Accept','application/json').set("Content-Type","application/json")
-    //     expect(response.status).toBe(200);
-    //     //.log(response)
-    //   });
-    //   it("EDIT the order", async () => {
-    //     const response = await supertest(app).put("/api/store/order/3").send({
-    //       "name":"order20",
-    //       "status":"delivered",
-    //       "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmlzdE5hbWUiOiJtb3MiLCJsYXN0TmFtZSI6Im1vcyIsImlhdCI6MTY1OTYyNzQ0OX0.u2C7_tvbAHTKMde_oBw0VnXrgCLy7GchK9BmB5mK-64"
-    //   }).set('Accept','application/json').set("Content-Type","application/json")
-    //     expect(response.status).toBe(200);
-    //     //.log(response)
-    //   });
 });

@@ -39,15 +39,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var orders_1 = require("../models/orders");
 var crud = new orders_1.ordersCRUD();
 describe('***orders functions test***', function () {
-    it('--index is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--index is not null ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(crud.index).toBeDefined();
+            expect(crud.index).not.toBeNull();
             return [2 /*return*/];
         });
     }); });
-    it('--show is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--show is not false ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(crud.show).toBeDefined();
+            expect(crud.show).not.toBeFalse();
             return [2 /*return*/];
         });
     }); });
@@ -57,9 +57,9 @@ describe('***orders functions test***', function () {
             return [2 /*return*/];
         });
     }); });
-    it('--edit is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--edit is not equal "1" ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(crud.edit).toBeDefined();
+            expect(crud.edit).not.toEqual(1);
             return [2 /*return*/];
         });
     }); });
@@ -70,3 +70,6 @@ describe('***orders functions test***', function () {
         });
     }); });
 });
+// it('--delete not throw error ', async () => {
+//   expect(crud.delete).not.toThrow(new Error());
+// });
