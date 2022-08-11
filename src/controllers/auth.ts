@@ -1,16 +1,16 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { user, usersCRUD } from '../models/users';
-import { token } from 'morgan';
-const crud = new usersCRUD();
+import express from 'express'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { user, usersCRUD } from '../models/users'
+import { token } from 'morgan'
+const crud = new usersCRUD()
 
 export const auth = async (
   req: express.Request,
   res: express.Response,
   next: Function
 ) => {
-  //auth removed as mentioned in reviwe
+  // auth removed as mentioned in reviwe
 
   // const password = req.body.password;
   // console.log(password);
@@ -22,8 +22,8 @@ export const auth = async (
   //   res.json(token);
   // }
 
-  res.json(null);
-  //res.json({"massage":"authed"})
-  //.json(res)
-  next();
-};
+  res.json(null)
+  // res.json({"massage":"authed"})
+  // .json(res)
+  next()
+}

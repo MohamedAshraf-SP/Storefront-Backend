@@ -1,8 +1,8 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { product_order, product_orderCRUD } from '../models/product_order';
-const crud = new product_orderCRUD();
+import express from 'express'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { product_order, product_orderCRUD } from '../models/product_order'
+const crud = new product_orderCRUD()
 
 export const index = async (
   req: express.Request,
@@ -10,14 +10,14 @@ export const index = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
+    jwt.verify(req.body.token, process.env.JWTsecret as string)
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
+    res.status(401).json({ error: 'invalid token', err: error })
   }
-  let result = await crud.index();
-  res.send(result);
-  next();
-};
+  const result = await crud.index()
+  res.send(result)
+  next()
+}
 
 export const show = async (
   req: express.Request,
@@ -25,21 +25,21 @@ export const show = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
+    jwt.verify(req.body.token, process.env.JWTsecret as string)
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
+    res.status(401).json({ error: 'invalid token', err: error })
   }
 
   //  res.json(res)
   // const x:string=req.query.id as string
   // req.params.id=x
-  const product = await crud.show(req.params.id);
+  const product = await crud.show(req.params.id)
 
   //  console.log(x)
-  res.json(product);
-  //.json(res)
-  next();
-};
+  res.json(product)
+  // .json(res)
+  next()
+}
 
 export const create = async (
   req: express.Request,
@@ -47,35 +47,35 @@ export const create = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string);
+    jwt.verify(req.body.token, process.env.JWTsecret as string)
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error });
+    res.status(401).json({ error: 'invalid token', err: error })
   }
   try {
-    let product_id: String = req.params.pid;
-    let order_id: String = req.params.oid;
+    const product_id: String = req.params.pid
+    const order_id: String = req.params.oid
 
-    let token = jwt.sign(
+    const token = jwt.sign(
       { order_id, product_id },
       process.env.JWTsecret as string
-    );
+    )
 
     const hash = bcrypt.hashSync(
       req.body.password + process.env.pepper,
       parseInt(process.env.SALTROUNDS as string)
-    );
+    )
 
     //     console.log(name,price)
 
-    const neworder = await crud.create(order_id, product_id);
+    const neworder = await crud.create(order_id, product_id)
 
-    res.json({ massage: 'created', token: token });
+    res.json({ massage: 'created', token })
   } catch (err) {
-    res.status(400);
-    res.json(err);
+    res.status(400)
+    res.json(err)
   }
-  next();
-};
+  next()
+}
 
 // export const edit = async (
 //   req: express.Request,

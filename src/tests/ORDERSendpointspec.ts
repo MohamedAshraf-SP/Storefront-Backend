@@ -1,27 +1,27 @@
-import { Request } from 'express';
-import supertest from 'supertest';
-import app from '../server';
-import jwt from 'jsonwebtoken';
-import { order, ordersCRUD } from '../models/orders';
-//import { token } from 'morgan';
-import { request } from 'http';
+import { Request } from 'express'
+import supertest from 'supertest'
+import app from '../server'
+import jwt from 'jsonwebtoken'
+import { order, ordersCRUD } from '../models/orders'
+// import { token } from 'morgan';
+import { request } from 'http'
 
-const tst = supertest(app);
+const tst = supertest(app)
 describe('***My order endpoint checker ***', () => {
-  let token: string;
+  let token: string
   beforeAll(async () => {
-    let res = await supertest(app)
+    const res = await supertest(app)
       .post('/api/store/user')
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .send({
         fristName: 'mohamed',
         lastName: 'mohamed',
-        password: 'mo',
-      });
+        password: 'mo'
+      })
 
-    token = res.body.token;
-  });
+    token = res.body.token
+  })
 
   it('GET all orders', async () => {
     const response = await supertest(app)
@@ -29,11 +29,11 @@ describe('***My order endpoint checker ***', () => {
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
       .send({
-        token: `${token as string}`,
-      });
+        token: `${token as string}`
+      })
 
-    expect(response.status).toBe(200);
-  });
+    expect(response.status).toBe(200)
+  })
   // it('SHOW a order', async () => {
   //   const response = await supertest(app)
   //     .get('/api/store/order/2')
@@ -67,7 +67,6 @@ describe('***My order endpoint checker ***', () => {
   //   expect(response.status).toBe(200);
   // });
 
-
   it('CREATE the order', async () => {
     const response = await supertest(app)
       .post('/api/store/order')
@@ -75,14 +74,14 @@ describe('***My order endpoint checker ***', () => {
         name: 'String',
         status: 'String',
         user_id: 4,
-        token: `${token as string}`,
+        token: `${token as string}`
       })
       .set('Accept', 'application/json')
-      .set('Content-Type', 'application/json');
+      .set('Content-Type', 'application/json')
 
-    expect(response.status).toBe(200);
-    //.log(response)
-  });
+    expect(response.status).toBe(200)
+    // .log(response)
+  })
 
   it('EDIT the order', async () => {
     const response = await supertest(app)
@@ -95,7 +94,8 @@ describe('***My order endpoint checker ***', () => {
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
 
-    expect(response.status).toBe(200);
-    //.log(response)
-  });
-});
+    // eslint-disable-next-line no-undef
+    expect(response.status).toBe(200)
+    // .log(response)
+  })
+})

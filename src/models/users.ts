@@ -1,7 +1,7 @@
-import client from './../database';
-import jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcrypt';
-import { env } from 'process';
+import client from './../database'
+import jwt from 'jsonwebtoken'
+import * as bcrypt from 'bcrypt'
+import { env } from 'process'
 export type user = {
   id: Number;
   fristName: String;
@@ -9,7 +9,7 @@ export type user = {
   password: String;
 };
 
-const pepper = process.env.pepper as string;
+const pepper = process.env.pepper as string
 
 // create table users (
 //     id SERIAL PRIMARY KEY,
@@ -19,116 +19,116 @@ const pepper = process.env.pepper as string;
 // );
 
 export class usersCRUD {
-  async index(): Promise<user[]> {
+  async index (): Promise<user[]> {
     try {
-      const conn = client.connect();
-      const q = 'select * from users';
+      const conn = client.connect()
+      const q = 'select * from users'
       const result = await (await conn).query(q);
-      (await conn).release();
-      return result.rows;
+      (await conn).release()
+      return result.rows
     } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
+      console.log(err)
+      throw new Error(`${err}`)
     }
   }
 
-  ////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////
 
-  async show(id: string): Promise<user> {
+  async show (id: string): Promise<user> {
     try {
-      const sql = 'SELECT * FROM users WHERE id=($1)';
+      const sql = 'SELECT * FROM users WHERE id=($1)'
       // @ts-ignore
-      const conn = await client.connect();
+      const conn = await client.connect()
 
-      const result = await conn.query(sql, [id]);
+      const result = await conn.query(sql, [id])
 
-      conn.release();
+      conn.release()
 
-      return result.rows[0];
+      return result.rows[0]
     } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
+      console.log(err)
+      throw new Error(`${err}`)
     }
   }
 
-  async create(
+  async create (
     fristName: String,
     lastName: String,
     password: String
   ): Promise<user[]> {
     try {
-      const conn = await client.connect();
+      const conn = await client.connect()
 
-      const q = ` INSERT INTO users (fristName,lastName,password) VALUES ('${fristName}','${lastName}','${password}')`;
-      const result = await conn.query(q);
-      conn.release();
-      return result.rows;
+      const q = ` INSERT INTO users (fristName,lastName,password) VALUES ('${fristName}','${lastName}','${password}')`
+      const result = await conn.query(q)
+      conn.release()
+      return result.rows
     } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
+      console.log(err)
+      throw new Error(`${err}`)
     }
   }
 
-  async edit(
+  async edit (
     id: String,
     fristName: String,
     lastName: String,
     password: String
   ): Promise<user> {
     try {
-      const conn = await client.connect();
-      const q = `UPDATE users SET fristName = '${fristName}', lastName = '${lastName}',password ='${password}' WHERE id=${id}`;
-      const result = await conn.query(q);
-      conn.release();
-      return result.rows[0];
+      const conn = await client.connect()
+      const q = `UPDATE users SET fristName = '${fristName}', lastName = '${lastName}',password ='${password}' WHERE id=${id}`
+      const result = await conn.query(q)
+      conn.release()
+      return result.rows[0]
     } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
+      console.log(err)
+      throw new Error(`${err}`)
     }
   }
 
-  async delete(id: string): Promise<user[]> {
+  async delete (id: string): Promise<user[]> {
     try {
-      const sql = 'DELETE FROM users WHERE id=($1)';
+      const sql = 'DELETE FROM users WHERE id=($1)'
       // @ts-ignore
-      const conn = await client.connect();
+      const conn = await client.connect()
 
-      const result = await conn.query(sql, [id]);
+      const result = await conn.query(sql, [id])
 
-      const user = result.rows[0];
+      const user = result.rows[0]
 
-      conn.release();
+      conn.release()
 
-      return user;
+      return user
     } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
+      console.log(err)
+      throw new Error(`${err}`)
     }
   }
 
-  async auth(id: string, password: String | Buffer): Promise<user | null> {
+  async auth (id: string, password: String | Buffer): Promise<user | null> {
     try {
-      const sql = 'SELECT password FROM users WHERE id=($1)';
+      const sql = 'SELECT password FROM users WHERE id=($1)'
       // @ts-ignore
-      const conn = await client.connect();
+      const conn = await client.connect()
 
-      const result = await conn.query(sql, [id]);
+      const result = await conn.query(sql, [id])
 
       if (result.rowCount > 0) {
-        const user = result.rows[0];
-        console.log(user);
+        const user = result.rows[0]
+        console.log(user)
 
         if (bcrypt.compareSync(password + pepper, user.password)) {
-          return user;
+          return user
         }
       }
 
-      conn.release();
+      conn.release()
 
-      return null;
+      return null
     } catch (err) {
-      console.log(err);
-      throw new Error(`${err}`);
+      console.log(err)
+      throw new Error(`${err}`)
     }
   }
 }
