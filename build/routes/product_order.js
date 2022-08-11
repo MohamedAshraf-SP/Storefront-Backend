@@ -13,6 +13,6 @@ var product_orderRoute = express_1.default.Router();
 product_orderRoute.get('/productsinorders', product_order_1.index);
 product_orderRoute.get('/order/products/:id', product_order_1.show);
 product_orderRoute.post('/order/:oid/product/:pid', product_order_1.create);
-//product_orderRoute.put('/order/:id', edit);
+// product_orderRoute.put('/order/:id', edit);
 product_orderRoute.delete('/order/:id', orders_1.deletee);
 exports.default = product_orderRoute;

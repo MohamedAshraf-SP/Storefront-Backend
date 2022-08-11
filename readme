@@ -144,3 +144,6 @@ PG_PASSWORD : the password for the user "PG_USER"
 ### packages
 
     in pachage.json file
+
+
+#lint connfig ::: npm init @eslint/config

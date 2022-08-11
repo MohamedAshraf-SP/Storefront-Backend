@@ -85,7 +85,13 @@ var productCRUD = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        return [2 /*return*/, result.rows[0]];
+                        return [2 /*return*/, result.rows[0]
+                            // const conn= await client.connect()
+                            // const q=`select * from products where id=${id}`
+                            // const result=  await conn.query(q);
+                            //  conn.release()
+                            // return result.rows[0]
+                        ];
                     case 3:
                         err_2 = _a.sent();
                         console.log(err_2);
@@ -129,7 +135,10 @@ var productCRUD = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1.default.connect()];
+                        return [4 /*yield*/, database_1.default.connect()
+                            //    const q=` INSERT INTO products (name,price) VALUES ('${name}',${price})`
+                            //  UPDATE products SET name = '${name}', price = ${price} WHERE id=${id};
+                        ];
                     case 1:
                         conn = _a.sent();
                         q = "UPDATE products SET name = '".concat(name, "', price = ").concat(price, " WHERE id=").concat(id, ";\n");

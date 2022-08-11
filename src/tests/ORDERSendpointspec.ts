@@ -22,7 +22,18 @@ describe('***My order endpoint checker ***', () => {
 
     token = res.body.token
   })
+  it('fetch all orders', async function () {
+    // const order: order = {
+    //     id: null as unknown as Number,
+    //     name: "Legion Laptop",
+    //     status: "DELIVERED"
+        
+    // }
+   //await ordersCRUD.prototype.create({...order})
+    const products = await ordersCRUD.prototype.index()
 
+  expect(products.length).toBeGreaterThan(0);
+});
   it('GET all orders', async () => {
     const response = await supertest(app)
       .get('/api/store/orders')
@@ -34,38 +45,48 @@ describe('***My order endpoint checker ***', () => {
 
     expect(response.status).toBe(200)
   })
-  // it('SHOW a order', async () => {
-  //   const response = await supertest(app)
-  //     .get('/api/store/order/2')
-  //     //.set('Accept', 'application/json')
-  //     //.set('Content-Type', 'application/json')
-  //     .send({
-  //       token: `${token as string}`,
-  //     });
-  //   expect(response.status).toBe(200);
-  // });
-  // it('DELETE a order', async () => {
-  //   const response = await supertest(app)
-  //     .get('/api/store/order/2')
-  //    // .set('Accept', 'application/json')
-  //     //.set('Content-Type', 'application/json')
-  //     .send({
-  //       token: `${token as string}`,
-  //     });
+  it('SHOW a order', async () => {
+    const response = await supertest(app)
+      .get('/api/store/order/2')
+      //.set('Accept', 'application/json')
+      //.set('Content-Type', 'application/json')
+      .send({
+        token: `${token as string}`,
+      });
+    expect(response.status).toBe(200);
+  });
+  it('DELETE a order', async () => {
+    const response = await supertest(app)
+      .get('/api/store/order/2')
+     // .set('Accept', 'application/json')
+      //.set('Content-Type', 'application/json')
+      .send({
+        token: `${token as string}`,
+      });
 
-  //   expect(response.status).toBe(200);
-  // });
+    expect(response.status).toBe(200);
+  });
 
-  // it('SHOW a order', async () => {
-  //   const response = await supertest(app).get('/api/store/order/31');
+  it('SHOW a order', async () => {
+    const response = await supertest(app).get('/api/store/order/31').send({
+      token: `${token as string}`
+    })
+    .set('Accept', 'application/json')
+    .set('Content-Type', 'application/json')
+;
 
-  //   expect(response.status).toBe(200);
-  // });
-  // it('DELETE a order', async () => {
-  //   const response = await supertest(app).get('/api/store/order/32');
+    expect(response.status).toBe(200);
+  });
+  it('DELETE a order', async () => {
+    const response = await supertest(app).get('/api/store/order/32').send({
+      token: `${token as string}`
+    })
+    .set('Accept', 'application/json')
+    .set('Content-Type', 'application/json')
+;
 
-  //   expect(response.status).toBe(200);
-  // });
+    expect(response.status).toBe(200);
+  });
 
   it('CREATE the order', async () => {
     const response = await supertest(app)

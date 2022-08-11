@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var server_1 = __importDefault(require("../server"));
+var orders_1 = require("../models/orders");
 var tst = (0, supertest_1.default)(server_1.default);
 describe('***My order endpoint checker ***', function () {
     var token;
@@ -55,7 +56,7 @@ describe('***My order endpoint checker ***', function () {
                         .send({
                         fristName: 'mohamed',
                         lastName: 'mohamed',
-                        password: 'mo',
+                        password: 'mo'
                     })];
                 case 1:
                     res = _a.sent();
@@ -64,6 +65,20 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
+    it('fetch all orders', function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var products;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, orders_1.ordersCRUD.prototype.index()];
+                    case 1:
+                        products = _a.sent();
+                        expect(products.length).toBeGreaterThan(0);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    });
     it('GET all orders', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
@@ -72,6 +87,24 @@ describe('***My order endpoint checker ***', function () {
                         .get('/api/store/orders')
                         .set('Accept', 'application/json')
                         .set('Content-Type', 'application/json')
+                        .send({
+                        token: "".concat(token)
+                    })];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('SHOW a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .get('/api/store/order/2')
+                        //.set('Accept', 'application/json')
+                        //.set('Content-Type', 'application/json')
                         .send({
                         token: "".concat(token),
                     })];
@@ -82,34 +115,56 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    // it('SHOW a order', async () => {
-    //   const response = await supertest(app)
-    //     .get('/api/store/order/2')
-    //     //.set('Accept', 'application/json')
-    //     //.set('Content-Type', 'application/json')
-    //     .send({
-    //       token: `${token as string}`,
-    //     });
-    //   expect(response.status).toBe(200);
-    // });
-    // it('DELETE a order', async () => {
-    //   const response = await supertest(app)
-    //     .get('/api/store/order/2')
-    //    // .set('Accept', 'application/json')
-    //     //.set('Content-Type', 'application/json')
-    //     .send({
-    //       token: `${token as string}`,
-    //     });
-    //   expect(response.status).toBe(200);
-    // });
-    // it('SHOW a order', async () => {
-    //   const response = await supertest(app).get('/api/store/order/31');
-    //   expect(response.status).toBe(200);
-    // });
-    // it('DELETE a order', async () => {
-    //   const response = await supertest(app).get('/api/store/order/32');
-    //   expect(response.status).toBe(200);
-    // });
+    it('DELETE a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .get('/api/store/order/2')
+                        // .set('Accept', 'application/json')
+                        //.set('Content-Type', 'application/json')
+                        .send({
+                        token: "".concat(token),
+                    })];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('SHOW a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/order/31').send({
+                        token: "".concat(token)
+                    })
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('DELETE a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/order/32').send({
+                        token: "".concat(token)
+                    })
+                        .set('Accept', 'application/json')
+                        .set('Content-Type', 'application/json')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
     it('CREATE the order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
@@ -120,7 +175,7 @@ describe('***My order endpoint checker ***', function () {
                         name: 'String',
                         status: 'String',
                         user_id: 4,
-                        token: "".concat(token),
+                        token: "".concat(token)
                     })
                         .set('Accept', 'application/json')
                         .set('Content-Type', 'application/json')];
@@ -140,12 +195,15 @@ describe('***My order endpoint checker ***', function () {
                         .send({
                         name: 'order20',
                         status: 'delivered',
-                        token: "".concat(token),
+                        token: "".concat(token)
                     })
                         .set('Accept', 'application/json')
-                        .set('Content-Type', 'application/json')];
+                        .set('Content-Type', 'application/json')
+                    // eslint-disable-next-line no-undef
+                ];
                 case 1:
                     response = _a.sent();
+                    // eslint-disable-next-line no-undef
                     expect(response.status).toBe(200);
                     return [2 /*return*/];
             }

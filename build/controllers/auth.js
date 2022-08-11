@@ -41,7 +41,7 @@ var users_1 = require("../models/users");
 var crud = new users_1.usersCRUD();
 var auth = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        //auth removed as mentioned in reviwe
+        // auth removed as mentioned in reviwe
         // const password = req.body.password;
         // console.log(password);
         // const product = await crud.auth(req.params.id, password);
@@ -50,8 +50,8 @@ var auth = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
         //   res.json(token);
         // }
         res.json(null);
-        //res.json({"massage":"authed"})
-        //.json(res)
+        // res.json({"massage":"authed"})
+        // .json(res)
         next();
         return [2 /*return*/];
     });

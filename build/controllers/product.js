@@ -61,10 +61,12 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, crud.show(req.params.id)];
+            case 0: return [4 /*yield*/, crud.show(req.params.id)
+                // console.log(x)
+            ];
             case 1:
                 product = _a.sent();
-                //console.log(x)
+                // console.log(x)
                 res.json(product);
                 next();
                 return [2 /*return*/];

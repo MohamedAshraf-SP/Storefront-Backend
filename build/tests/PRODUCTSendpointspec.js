@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var server_1 = __importDefault(require("../server"));
+var products_1 = require("../models/products");
 var tst = (0, supertest_1.default)(server_1.default);
 describe('***My product endpoint checker ***', function () {
     var token;
@@ -55,7 +56,7 @@ describe('***My product endpoint checker ***', function () {
                         .send({
                         fristName: 'mohamed',
                         lastName: 'mohamed',
-                        password: 'mo',
+                        password: 'mo'
                     })];
                 case 1:
                     res = _a.sent();
@@ -64,6 +65,26 @@ describe('***My product endpoint checker ***', function () {
             }
         });
     }); });
+    it('fetch all products', function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var product, products;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        product = {
+                            id: null,
+                            name: "Legion Laptop",
+                            price: 800,
+                        };
+                        return [4 /*yield*/, products_1.productCRUD.prototype.index()];
+                    case 1:
+                        products = _a.sent();
+                        expect(products.length).toBeGreaterThan(0);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    });
     it('GET all products', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {

@@ -13,7 +13,7 @@ if (ENV === 'dev') {
         host: PG_HOST,
         database: PG_DB,
         user: PG_USER,
-        password: PG_PASSWORD,
+        password: PG_PASSWORD
     });
 }
 else if (ENV === 'test') {
@@ -21,7 +21,7 @@ else if (ENV === 'test') {
         host: PG_HOST,
         database: PG_DB_test,
         user: PG_USER,
-        password: PG_PASSWORD,
+        password: PG_PASSWORD
     });
 }
 else {
@@ -29,7 +29,7 @@ else {
         host: PG_HOST,
         database: PG_DB_test,
         user: PG_USER,
-        password: PG_PASSWORD,
+        password: PG_PASSWORD
     });
 }
 cli.connect(function (err) {

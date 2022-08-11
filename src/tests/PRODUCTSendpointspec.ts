@@ -19,6 +19,20 @@ describe('***My product endpoint checker ***', () => {
     token = res.body.token
   })
 
+
+  it('fetch all products', async function () {
+    const product: product = {
+        id: null as unknown as Number,
+        name: "Legion Laptop",
+        price: 800,
+        
+    }
+   // await productCRUD.create(product)
+    const products = await productCRUD.prototype.index()
+
+  expect(products.length).toBeGreaterThan(0);
+});
+
   it('GET all products', async () => {
     const response = await supertest(app).get('/api/store/products')
 
