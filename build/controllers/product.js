@@ -61,12 +61,9 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, crud.show(req.params.id)
-                // console.log(x)
-            ];
+            case 0: return [4 /*yield*/, crud.show(req.params.id)];
             case 1:
                 product = _a.sent();
-                // console.log(x)
                 res.json(product);
                 next();
                 return [2 /*return*/];
@@ -110,7 +107,6 @@ var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                // console.log( req.query.id as String,req.body.name,req.body.price)
                 try {
                     jsonwebtoken_1.default.verify(req.body.token, process.env.JWTsecret);
                 }
@@ -120,7 +116,6 @@ var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                 return [4 /*yield*/, crud.edit(req.query.id, req.body.name, req.body.price)];
             case 1:
                 edited = _a.sent();
-                console.log();
                 res.json({ massage: 'edited' });
                 next();
                 return [2 /*return*/];
@@ -132,9 +127,7 @@ var deletee = function (req, res, next) { return __awaiter(void 0, void 0, void 
     var deleted;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                console.log('delete');
-                return [4 /*yield*/, crud.delete(req.params.id)];
+            case 0: return [4 /*yield*/, crud.delete(req.params.id)];
             case 1:
                 deleted = _a.sent();
                 res.json({ massage: 'deleted' });

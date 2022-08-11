@@ -63,7 +63,7 @@ var ordersCRUD = /** @class */ (function () {
                         return [2 /*return*/, result.rows];
                     case 4:
                         err_1 = _a.sent();
-                        console.log(err_1);
+                        //console.log(err)
                         throw new Error("".concat(err_1));
                     case 5: return [2 /*return*/];
                 }
@@ -89,7 +89,7 @@ var ordersCRUD = /** @class */ (function () {
                     case 3: return [2 /*return*/, (_a.sent()).rows];
                     case 4:
                         err_2 = _a.sent();
-                        console.log(err_2);
+                        //console.log(err)
                         throw new Error("".concat(err_2));
                     case 5: return [2 /*return*/];
                 }
@@ -104,7 +104,6 @@ var ordersCRUD = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         date = new Date().toISOString();
-                        console.log(date);
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
@@ -116,7 +115,7 @@ var ordersCRUD = /** @class */ (function () {
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_3 = _a.sent();
-                        console.log(err_3);
+                        //console.log(err)
                         throw new Error("".concat(err_3));
                     case 4: return [2 /*return*/];
                 }
@@ -142,7 +141,7 @@ var ordersCRUD = /** @class */ (function () {
                         return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_4 = _a.sent();
-                        console.log(err_4);
+                        //console.log(err)
                         throw new Error("".concat(err_4));
                     case 4: return [2 /*return*/];
                 }
@@ -167,7 +166,7 @@ var ordersCRUD = /** @class */ (function () {
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_5 = _a.sent();
-                        console.log(err_5);
+                        //console.log(err)
                         throw new Error("".concat(err_5));
                     case 4: return [2 /*return*/];
                 }

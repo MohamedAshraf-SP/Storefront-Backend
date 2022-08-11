@@ -36,7 +36,7 @@ export const show = async (
   // req.params.id=x
   const product = await crud.show(req.params.id)
 
-  //  console.log(x)
+
   res.json(product)
   // .json(res)
   next()
@@ -62,7 +62,6 @@ export const create = async (
       parseInt(process.env.SALTROUNDS as string)
     )
 
-    //     console.log(name,price)
 
     const neworder = await crud.create(fristName, lastName, hash)
 
@@ -84,13 +83,11 @@ export const edit = async (
   } catch (error) {
     res.status(401).json({ error: 'invalid token', err: error })
   }
-  // console.log( req.query.id as String,req.body.name,req.body.price)
 
   const hash = bcrypt.hashSync(
     req.body.password + process.env.pepper,
     parseInt(process.env.SALTROUNDS as string)
   )
-  console.log(hash)
 
   const edited = await crud.edit(
     req.query.id as String,
@@ -98,7 +95,6 @@ export const edit = async (
     req.body.lastName,
     hash
   )
-  console.log()
   res.json({ massage: 'edited' })
   next()
 }
@@ -113,7 +109,6 @@ export const deletee = async (
   } catch (error) {
     res.status(401).json({ error: 'invalid token', err: error })
   }
-  // console.log ("delete",req)
   const deleted = await crud.delete(req.params.id)
   res.json({ massage: 'deleted' })
 

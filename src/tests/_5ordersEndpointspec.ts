@@ -44,6 +44,7 @@ describe('***My order endpoint checker ***', () => {
       })
 
     expect(response.status).toBe(200)
+    
   })
   it('SHOW a order', async () => {
     const response = await supertest(app)
@@ -67,26 +68,6 @@ describe('***My order endpoint checker ***', () => {
     expect(response.status).toBe(200);
   });
 
-  it('SHOW a order', async () => {
-    const response = await supertest(app).get('/api/store/order/31').send({
-      token: `${token as string}`
-    })
-    .set('Accept', 'application/json')
-    .set('Content-Type', 'application/json')
-;
-
-    expect(response.status).toBe(200);
-  });
-  it('DELETE a order', async () => {
-    const response = await supertest(app).get('/api/store/order/32').send({
-      token: `${token as string}`
-    })
-    .set('Accept', 'application/json')
-    .set('Content-Type', 'application/json')
-;
-
-    expect(response.status).toBe(200);
-  });
 
   it('CREATE the order', async () => {
     const response = await supertest(app)

@@ -76,12 +76,9 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                 catch (error) {
                     res.status(401).json({ error: 'invalid token', err: error });
                 }
-                return [4 /*yield*/, crud.show(req.params.id)
-                    //  console.log(x)
-                ];
+                return [4 /*yield*/, crud.show(req.params.id)];
             case 1:
                 product = _a.sent();
-                //  console.log(x)
                 res.json(product);
                 // .json(res)
                 next();
@@ -130,11 +127,9 @@ var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                     res.status(401).json({ error: 'invalid token', err: error });
                 }
                 hash = bcrypt_1.default.hashSync(req.body.password + process.env.pepper, parseInt(process.env.SALTROUNDS));
-                console.log(hash);
                 return [4 /*yield*/, crud.edit(req.query.id, req.body.fristName, req.body.lastName, hash)];
             case 1:
                 edited = _a.sent();
-                console.log();
                 res.json({ massage: 'edited' });
                 next();
                 return [2 /*return*/];

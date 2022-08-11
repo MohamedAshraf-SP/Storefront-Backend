@@ -21,8 +21,8 @@ var port = process.env.PORT || 3000;
 app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)());
 // app.use(cors)
-// app.use(morgan('dev'));
-app.use((0, morgan_1.default)('common'));
+app.use((0, morgan_1.default)('dev'));
+//app.use(morgan('common'))
 app.use('/api/store/', products_1.default);
 app.use('/api/store/', users_1.default);
 app.use('/api/store/', orders_1.default);

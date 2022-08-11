@@ -102,7 +102,7 @@ describe('***My order endpoint checker ***', function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .get('/api/store/order/2?id=2')
+                        .get('/api/store/order/2')
                         //.set('Accept', 'application/json')
                         //.set('Content-Type', 'application/json')
                         .send({
@@ -115,16 +115,24 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    // it('DELETE a order', async () => {
-    //   const response = await supertest(app)
-    //     .get('/api/store/order/2')
-    //    // .set('Accept', 'application/json')
-    //     //.set('Content-Type', 'application/json')
-    //     .send({
-    //       token: `${token as string}`,
-    //     });
-    //   expect(response.status).toBe(200);
-    // });
+    it('DELETE a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
+                        .get('/api/store/order/2')
+                        // .set('Accept', 'application/json')
+                        //.set('Content-Type', 'application/json')
+                        .send({
+                        token: "".concat(token),
+                    })];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
     it('CREATE the order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {

@@ -23,7 +23,7 @@ export const show = async (
   // req.params.id=x
   const product = await crud.show(req.params.id)
 
-  // console.log(x)
+
   res.json(product)
   next()
 }
@@ -43,7 +43,7 @@ export const create = async (
     const name: String = req.body.name
     const price: Number = req.body.price
 
-    //     console.log(name,price)
+
 
     const neworder = await crud.create(name, price)
 
@@ -60,7 +60,7 @@ export const edit = async (
   res: express.Response,
   next: Function
 ) => {
-  // console.log( req.query.id as String,req.body.name,req.body.price)
+
 
   try {
     jwt.verify(req.body.token, process.env.JWTsecret as string)
@@ -73,7 +73,7 @@ export const edit = async (
     req.body.name,
     req.body.price
   )
-  console.log()
+
   res.json({ massage: 'edited' })
   next()
 }
@@ -83,7 +83,7 @@ export const deletee = async (
   res: express.Response,
   next: Function
 ) => {
-  console.log('delete')
+
   const deleted = await crud.delete(req.params.id)
   res.json({ massage: 'deleted' })
 

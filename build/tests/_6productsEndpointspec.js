@@ -41,9 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var server_1 = __importDefault(require("../server"));
-var orders_1 = require("../models/orders");
+var products_1 = require("../models/products");
 var tst = (0, supertest_1.default)(server_1.default);
-describe('***My order endpoint checker ***', function () {
+describe('***My product endpoint checker ***', function () {
     var token;
     beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
         var res;
@@ -65,12 +65,18 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it('fetch all orders', function () {
+    it('fetch all products', function () {
         return __awaiter(this, void 0, void 0, function () {
-            var products;
+            var product, products;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, orders_1.ordersCRUD.prototype.index()];
+                    case 0:
+                        product = {
+                            id: null,
+                            name: "Legion Laptop",
+                            price: 800,
+                        };
+                        return [4 /*yield*/, products_1.productCRUD.prototype.index()];
                     case 1:
                         products = _a.sent();
                         expect(products.length).toBeGreaterThan(0);
@@ -79,17 +85,11 @@ describe('***My order endpoint checker ***', function () {
             });
         });
     });
-    it('GET all orders', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('GET all products', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .get('/api/store/orders')
-                        .set('Accept', 'application/json')
-                        .set('Content-Type', 'application/json')
-                        .send({
-                        token: "".concat(token)
-                    })];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/products')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -97,17 +97,11 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it('SHOW a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('SHOW a product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .get('/api/store/order/2?id=2')
-                        //.set('Accept', 'application/json')
-                        //.set('Content-Type', 'application/json')
-                        .send({
-                        token: "".concat(token),
-                    })];
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/product/31')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
@@ -115,26 +109,27 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    // it('DELETE a order', async () => {
-    //   const response = await supertest(app)
-    //     .get('/api/store/order/2')
-    //    // .set('Accept', 'application/json')
-    //     //.set('Content-Type', 'application/json')
-    //     .send({
-    //       token: `${token as string}`,
-    //     });
-    //   expect(response.status).toBe(200);
-    // });
-    it('CREATE the order', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('DELETE a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/product/32')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('CREATE the product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .post('/api/store/order')
+                        .post('/api/store/product')
                         .send({
-                        name: 'String',
-                        status: 'String',
-                        user_id: 4,
+                        name: 'ADDE',
+                        price: 40,
                         token: "".concat(token)
                     })
                         .set('Accept', 'application/json')
@@ -146,24 +141,21 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it('EDIT the order', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('EDIT the product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .put('/api/store/order/3')
+                        .put('/api/store/product/?id=22')
                         .send({
-                        name: 'order20',
-                        status: 'delivered',
+                        name: 'ADDE',
+                        price: 40,
                         token: "".concat(token)
                     })
                         .set('Accept', 'application/json')
-                        .set('Content-Type', 'application/json')
-                    // eslint-disable-next-line no-undef
-                ];
+                        .set('Content-Type', 'application/json')];
                 case 1:
                     response = _a.sent();
-                    // eslint-disable-next-line no-undef
                     expect(response.status).toBe(200);
                     return [2 /*return*/];
             }

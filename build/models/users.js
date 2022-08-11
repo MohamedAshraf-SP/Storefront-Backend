@@ -66,12 +66,6 @@ exports.usersCRUD = void 0;
 var database_1 = __importDefault(require("./../database"));
 var bcrypt = __importStar(require("bcrypt"));
 var pepper = process.env.pepper;
-// create table users (
-//     id SERIAL PRIMARY KEY,
-//     fristName varchar(50) NOT NULL,
-//     lastName varchar(50) ,
-//     password varchar(100) NOT NULL,
-// );
 var usersCRUD = /** @class */ (function () {
     function usersCRUD() {
     }
@@ -101,7 +95,6 @@ var usersCRUD = /** @class */ (function () {
             });
         });
     };
-    /// /////////////////////////////////////////////////////////////
     usersCRUD.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var sql, conn, result, err_2;

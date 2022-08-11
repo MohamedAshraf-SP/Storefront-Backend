@@ -16,7 +16,7 @@ export class ordersCRUD {
       (await conn).release()
       return result.rows
     } catch (err) {
-      console.log(err)
+      //console.log(err)
       throw new Error(`${err}`)
     }
   }
@@ -29,7 +29,7 @@ export class ordersCRUD {
       (await conn).release()
       return (await result).rows
     } catch (err) {
-      console.log(err)
+      //console.log(err)
       throw new Error(`${err}`)
     }
   }
@@ -44,14 +44,14 @@ export class ordersCRUD {
       // let date :Date=(`${new Date().getFullYear()}-0${(new Date().getMonth()).toPrecision(1)}-${new Date().getDay()}`as unknown) as Date
       //    const date =(new Date().toISOString().split('T'))[0]
       const date = new Date().toISOString()
-      console.log(date)
+   
       const conn = await client.connect()
       const q = ` INSERT INTO orders (name,status,date,user_id) VALUES ('${name}','${status}','${date}',${user_id})`
       const result = await conn.query(q)
       conn.release()
       return result.rows
     } catch (err) {
-      console.log(err)
+      //console.log(err)
       throw new Error(`${err}`)
     }
   }
@@ -65,7 +65,7 @@ export class ordersCRUD {
       conn.release()
       return result.rows[0]
     } catch (err) {
-      console.log(err)
+      //console.log(err)
       throw new Error(`${err}`)
     }
   }
@@ -78,7 +78,7 @@ export class ordersCRUD {
       conn.release()
       return result.rows
     } catch (err) {
-      console.log(err)
+      //console.log(err)
       throw new Error(`${err}`)
     }
   }

@@ -83,13 +83,9 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                 catch (error) {
                     res.status(401).json({ error: 'invalid token', err: error });
                 }
-                console.log(req);
-                return [4 /*yield*/, crud.show(req.params.id)
-                    //  console.log(x)
-                ];
+                return [4 /*yield*/, crud.show(req.params.id)];
             case 1:
                 product = _a.sent();
-                //  console.log(x)
                 res.json(product);
                 // .json(res)
                 next();

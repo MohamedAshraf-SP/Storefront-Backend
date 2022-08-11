@@ -37,13 +37,13 @@ export const show = async (
   } catch (error) {
     res.status(401).json({ error: 'invalid token', err: error })
   }
-  console.log(req)
+  
   //  res.json(res)
   // const x:string=req.query.id as string
   // req.params.id=x
   const product = await crud.show(req.params.id)
 
-  //  console.log(x)
+
   res.json(product)
   // .json(res)
   next()
@@ -66,9 +66,6 @@ export const create = async (
     const user_id: String = req.body.user_id
     const product_id: String = req.body.product_id
 
-    //     console.log(name,price)
-
-    // console.log(date)
 
     const neworder = await crud.create(name, status, user_id, product_id)
 
@@ -90,7 +87,7 @@ export const edit = async (
   } catch (error) {
     res.status(401).json({ error: 'invalid token', err: error })
   }
-  // console.log( req.query.id as String,req.body.name,req.body.price)
+  
   const name: String = req.body.name
   const status: String = req.body.status
   //  let date:String=req.body.date

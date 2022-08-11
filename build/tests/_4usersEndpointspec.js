@@ -41,9 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var server_1 = __importDefault(require("../server"));
-var orders_1 = require("../models/orders");
+var users_1 = require("../models/users");
 var tst = (0, supertest_1.default)(server_1.default);
-describe('***My order endpoint checker ***', function () {
+describe('***My user endpoint checker ***', function () {
     var token;
     beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
         var res;
@@ -65,29 +65,25 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it('fetch all orders', function () {
+    it('fetch all users', function () {
         return __awaiter(this, void 0, void 0, function () {
-            var products;
+            var users;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, orders_1.ordersCRUD.prototype.index()];
+                    case 0: return [4 /*yield*/, users_1.usersCRUD.prototype.index()];
                     case 1:
-                        products = _a.sent();
-                        expect(products.length).toBeGreaterThan(0);
+                        users = _a.sent();
+                        expect(users.length).toBeGreaterThan(0);
                         return [2 /*return*/];
                 }
             });
         });
     });
-    it('GET all orders', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('GET all users', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .get('/api/store/orders')
-                        .set('Accept', 'application/json')
-                        .set('Content-Type', 'application/json')
-                        .send({
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/users').send({
                         token: "".concat(token)
                     })];
                 case 1:
@@ -97,16 +93,12 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it('SHOW a order', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('SHOW a user', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .get('/api/store/order/2?id=2')
-                        //.set('Accept', 'application/json')
-                        //.set('Content-Type', 'application/json')
-                        .send({
-                        token: "".concat(token),
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/user/31').send({
+                        token: "".concat(token)
                     })];
                 case 1:
                     response = _a.sent();
@@ -115,26 +107,29 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    // it('DELETE a order', async () => {
-    //   const response = await supertest(app)
-    //     .get('/api/store/order/2')
-    //    // .set('Accept', 'application/json')
-    //     //.set('Content-Type', 'application/json')
-    //     .send({
-    //       token: `${token as string}`,
-    //     });
-    //   expect(response.status).toBe(200);
-    // });
-    it('CREATE the order', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('DELETE a user', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default).get('/api/store/user/32').send({
+                        token: "".concat(token)
+                    })];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('CREATE the user', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .post('/api/store/order')
+                        .post('/api/store/user')
                         .send({
-                        name: 'String',
-                        status: 'String',
-                        user_id: 4,
+                        name: 'ADDE',
+                        price: 40,
                         token: "".concat(token)
                     })
                         .set('Accept', 'application/json')
@@ -146,24 +141,21 @@ describe('***My order endpoint checker ***', function () {
             }
         });
     }); });
-    it('EDIT the order', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('EDIT the user', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, (0, supertest_1.default)(server_1.default)
-                        .put('/api/store/order/3')
+                        .put('/api/store/user/?id=22')
                         .send({
-                        name: 'order20',
-                        status: 'delivered',
+                        name: 'ADDE',
+                        price: 40,
                         token: "".concat(token)
                     })
                         .set('Accept', 'application/json')
-                        .set('Content-Type', 'application/json')
-                    // eslint-disable-next-line no-undef
-                ];
+                        .set('Content-Type', 'application/json')];
                 case 1:
                     response = _a.sent();
-                    // eslint-disable-next-line no-undef
                     expect(response.status).toBe(200);
                     return [2 /*return*/];
             }

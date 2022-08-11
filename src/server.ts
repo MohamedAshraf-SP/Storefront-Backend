@@ -19,8 +19,8 @@ app.use(bodyParser.json())
 app.use(cors())
 
 // app.use(cors)
-// app.use(morgan('dev'));
-app.use(morgan('common'))
+app.use(morgan('dev'));
+//app.use(morgan('common'))
 app.use('/api/store/', productsRoute)
 app.use('/api/store/', usersRoute)
 app.use('/api/store/', ordersRoute)

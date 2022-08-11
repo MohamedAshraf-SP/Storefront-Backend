@@ -11,13 +11,6 @@ export type user = {
 
 const pepper = process.env.pepper as string
 
-// create table users (
-//     id SERIAL PRIMARY KEY,
-//     fristName varchar(50) NOT NULL,
-//     lastName varchar(50) ,
-//     password varchar(100) NOT NULL,
-// );
-
 export class usersCRUD {
   async index (): Promise<user[]> {
     try {
@@ -31,8 +24,6 @@ export class usersCRUD {
       throw new Error(`${err}`)
     }
   }
-
-  /// /////////////////////////////////////////////////////////////
 
   async show (id: string): Promise<user> {
     try {

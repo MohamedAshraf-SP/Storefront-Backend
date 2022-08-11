@@ -76,12 +76,9 @@ var show = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                 catch (error) {
                     res.status(401).json({ error: 'invalid token', err: error });
                 }
-                return [4 /*yield*/, crud.show(req.params.id)
-                    //  console.log(x)
-                ];
+                return [4 /*yield*/, crud.show(req.params.id)];
             case 1:
                 product = _a.sent();
-                //  console.log(x)
                 res.json(product);
                 // .json(res)
                 next();
@@ -135,18 +132,15 @@ exports.create = create;
 //   } catch (error) {
 //     res.status(401).json({ error: 'invalid token', err: error });
 //   }
-//   // console.log( req.query.id as String,req.body.name,req.body.price)
 //   const hash = bcrypt.hashSync(
 //     req.body.password + process.env.pepper,
 //     parseInt(process.env.SALTROUNDS as string)
 //   );
-//   console.log(hash);
 //   const edited = await crud.edit(
 //    req.params.id,
 //    req.body.pid,
 //    req.body.oid
 //   );
-//   console.log();
 //   res.json({ massage: 'edited' });
 //   next();
 // };
@@ -160,7 +154,6 @@ exports.create = create;
 //   } catch (error) {
 //     res.status(401).json({ error: 'invalid token', err: error });
 //   }
-//   // console.log ("delete",req)
 //   const deleted = await crud.delete(req.params.id);
 //   res.json({ massage: 'deleted' });
 //   next();
