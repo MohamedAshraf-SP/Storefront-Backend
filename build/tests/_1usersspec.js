@@ -51,9 +51,9 @@ describe('***USERS functions test***', function () {
             return [2 /*return*/];
         });
     }); });
-    it('--create is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--create works correctly ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            expect(crud.create).toBeDefined();
+            expect(crud.create("mohamed", "mohamed", "mo")).toBeTruthy();
             return [2 /*return*/];
         });
     }); });

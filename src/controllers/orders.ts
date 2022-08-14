@@ -1,7 +1,7 @@
-import express from 'express'
-import jwt from 'jsonwebtoken'
-import { order, ordersCRUD } from '../models/orders'
-const crud = new ordersCRUD()
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import { order, ordersCRUD } from '../models/orders';
+const crud = new ordersCRUD();
 
 // const order: order = {
 //     id=req.body.id,
@@ -18,14 +18,14 @@ export const index = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string)
+    jwt.verify(req.body.token, process.env.JWTsecret as string);
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error })
+    res.status(401).json({ error: 'invalid token', err: error });
   }
-  const result = await crud.index()
-  res.send(result)
-  next()
-}
+  const result = await crud.index();
+  res.send(result);
+  next();
+};
 
 export const show = async (
   req: express.Request,
@@ -33,21 +33,20 @@ export const show = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string)
+    jwt.verify(req.body.token, process.env.JWTsecret as string);
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error })
+    res.status(401).json({ error: 'invalid token', err: error });
   }
-  
+
   //  res.json(res)
   // const x:string=req.query.id as string
   // req.params.id=x
-  const product = await crud.show(req.params.id)
+  const product = await crud.show(req.params.id);
 
-
-  res.json(product)
+  res.json(product);
   // .json(res)
-  next()
-}
+  next();
+};
 
 export const create = async (
   req: express.Request,
@@ -55,27 +54,26 @@ export const create = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string)
+    jwt.verify(req.body.token, process.env.JWTsecret as string);
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error })
+    res.status(401).json({ error: 'invalid token', err: error });
   }
   try {
-    const name: String = req.body.name
-    const status: String = req.body.status
+    const name: String = req.body.name;
+    const status: String = req.body.status;
     //  let date:String=req.body.date
-    const user_id: String = req.body.user_id
-    const product_id: String = req.body.product_id
+    const user_id: String = req.body.user_id;
+    const product_id: String = req.body.product_id;
 
+    const neworder = await crud.create(name, status, user_id, product_id);
 
-    const neworder = await crud.create(name, status, user_id, product_id)
-
-    res.json({ massage: 'created' })
+    res.json(neworder);
   } catch (err) {
-    res.status(400)
-    res.json(err)
+    res.status(400);
+    res.json(err);
   }
-  next()
-}
+  next();
+};
 
 export const edit = async (
   req: express.Request,
@@ -83,21 +81,21 @@ export const edit = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string)
+    jwt.verify(req.body.token, process.env.JWTsecret as string);
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error })
+    res.status(401).json({ error: 'invalid token', err: error });
   }
-  
-  const name: String = req.body.name
-  const status: String = req.body.status
+
+  const name: String = req.body.name;
+  const status: String = req.body.status;
   //  let date:String=req.body.date
   // let user_id:String=req.body.user_id
   // let product_id:String=req.body.product_id
-  const edited = await crud.edit(req.params.id, name, status)
+  const edited = await crud.edit(req.params.id, name, status);
 
-  res.json({ massage: 'edited' })
-  next()
-}
+  res.json(edited);
+  next();
+};
 
 export const deletee = async (
   req: express.Request,
@@ -105,13 +103,13 @@ export const deletee = async (
   next: Function
 ) => {
   try {
-    jwt.verify(req.body.token, process.env.JWTsecret as string)
+    jwt.verify(req.body.token, process.env.JWTsecret as string);
   } catch (error) {
-    res.status(401).json({ error: 'invalid token', err: error })
+    res.status(401).json({ error: 'invalid token', err: error });
   }
 
-  const deleted = await crud.delete(req.params.id)
-  res.json({ massage: 'deleted' })
+  const deleted = await crud.delete(req.params.id);
+  res.json(deleted);
 
-  next()
-}
+  next();
+};

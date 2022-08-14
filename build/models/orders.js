@@ -86,7 +86,7 @@ var ordersCRUD = /** @class */ (function () {
                     case 2:
                         (_a.sent()).release();
                         return [4 /*yield*/, result];
-                    case 3: return [2 /*return*/, (_a.sent()).rows];
+                    case 3: return [2 /*return*/, (_a.sent()).rows[0]];
                     case 4:
                         err_2 = _a.sent();
                         //console.log(err)
@@ -107,12 +107,12 @@ var ordersCRUD = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        q = " INSERT INTO orders (name,status,date,user_id) VALUES ('".concat(name, "','").concat(status, "','").concat(date, "',").concat(user_id, ")");
+                        q = " INSERT INTO orders (name,status,date,user_id) VALUES ('".concat(name, "','").concat(status, "','").concat(date, "',").concat(user_id, ") RETURNING name,status");
                         return [4 /*yield*/, conn.query(q)];
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        return [2 /*return*/, result.rows];
+                        return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_3 = _a.sent();
                         //console.log(err)
@@ -133,7 +133,7 @@ var ordersCRUD = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        q = "UPDATE orders SET name = '".concat(name, "', status = '").concat(status, "',date ='").concat(date, "' WHERE id=").concat(id);
+                        q = "UPDATE orders SET name = '".concat(name, "', status = '").concat(status, "',date ='").concat(date, "' WHERE id=").concat(id, " RETURNING name,status");
                         return [4 /*yield*/, conn.query(q)];
                     case 2:
                         result = _a.sent();
@@ -158,12 +158,12 @@ var ordersCRUD = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        q = "delete from orders where id=".concat(id);
+                        q = "delete from orders where id=".concat(id, " RETURNING *");
                         return [4 /*yield*/, conn.query(q)];
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        return [2 /*return*/, result.rows];
+                        return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_5 = _a.sent();
                         //console.log(err)

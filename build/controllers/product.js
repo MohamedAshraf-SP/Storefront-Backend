@@ -88,7 +88,7 @@ var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 return [4 /*yield*/, crud.create(name_1, price)];
             case 1:
                 neworder = _a.sent();
-                res.json({ massage: 'created' });
+                res.send(neworder);
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _a.sent();
@@ -116,7 +116,7 @@ var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                 return [4 /*yield*/, crud.edit(req.query.id, req.body.name, req.body.price)];
             case 1:
                 edited = _a.sent();
-                res.json({ massage: 'edited' });
+                res.json(edited);
                 next();
                 return [2 /*return*/];
         }

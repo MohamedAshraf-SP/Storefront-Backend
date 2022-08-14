@@ -115,7 +115,7 @@ var create = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 return [4 /*yield*/, crud.create(name_1, status_1, user_id, product_id)];
             case 2:
                 neworder = _a.sent();
-                res.json({ massage: 'created' });
+                res.json(neworder);
                 return [3 /*break*/, 4];
             case 3:
                 err_1 = _a.sent();
@@ -145,7 +145,7 @@ var edit = function (req, res, next) { return __awaiter(void 0, void 0, void 0, 
                 return [4 /*yield*/, crud.edit(req.params.id, name, status)];
             case 1:
                 edited = _a.sent();
-                res.json({ massage: 'edited' });
+                res.json(edited);
                 next();
                 return [2 /*return*/];
         }
@@ -166,7 +166,7 @@ var deletee = function (req, res, next) { return __awaiter(void 0, void 0, void 
                 return [4 /*yield*/, crud.delete(req.params.id)];
             case 1:
                 deleted = _a.sent();
-                res.json({ massage: 'deleted' });
+                res.json(deleted);
                 next();
                 return [2 /*return*/];
         }

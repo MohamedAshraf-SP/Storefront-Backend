@@ -45,22 +45,46 @@ describe('***product functions test***', function () {
             return [2 /*return*/];
         });
     }); });
-    it('--show is not false ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--show is correctly return the product ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
         return __generator(this, function (_a) {
-            expect(crud.show).not.toBeFalse();
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, crud.show("166")];
+                case 1:
+                    result = _a.sent();
+                    expect(result).toEqual({
+                        "id": 166,
+                        "name": "ADDE",
+                        "price": 40
+                    });
+                    return [2 /*return*/];
+            }
         });
     }); });
-    it('--create is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            expect(crud.create).toBeDefined();
-            return [2 /*return*/];
+    it('--create is creates correctly ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = expect;
+                    return [4 /*yield*/, crud.create("name", 50)];
+                case 1:
+                    _a.apply(void 0, [_b.sent()]).toEqual({ "name": "name", "price": 50 });
+                    return [2 /*return*/];
+            }
         });
     }); });
-    it('--edit is not equal "1" ', function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            expect(crud.edit).not.toEqual(1);
-            return [2 /*return*/];
+    it('--edit is successfully edits ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = expect;
+                    return [4 /*yield*/, crud.edit("50", "name", 50)];
+                case 1:
+                    _a.apply(void 0, [_b.sent()]).toEqual({ "name": "name", "price": 50 });
+                    return [2 /*return*/];
+            }
         });
     }); });
     it('--delete not throw error ', function () { return __awaiter(void 0, void 0, void 0, function () {

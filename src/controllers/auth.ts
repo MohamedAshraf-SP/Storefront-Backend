@@ -1,9 +1,9 @@
-import express from 'express'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
-import { user, usersCRUD } from '../models/users'
-import { token } from 'morgan'
-const crud = new usersCRUD()
+import express from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { user, usersCRUD } from '../models/users';
+import { token } from 'morgan';
+const crud = new usersCRUD();
 
 export const auth = async (
   req: express.Request,
@@ -22,8 +22,8 @@ export const auth = async (
   //   res.json(token);
   // }
 
-  res.json(null)
+  res.json(null);
   // res.json({"massage":"authed"})
   // .json(res)
-  next()
-}
+  next();
+};

@@ -39,6 +39,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var orders_1 = require("../models/orders");
 var crud = new orders_1.ordersCRUD();
 describe('***orders functions test***', function () {
+    var store = new orders_1.ordersCRUD();
+    var order = {
+        id: undefined,
+        name: "Legion Laptop",
+        status: "delivered",
+        user_id: 11
+    };
+    describe('test order model methods', function () {
+        it('fetch all orders', function () {
+            return __awaiter(this, void 0, void 0, function () {
+                var order, orders;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            order = {
+                                id: undefined,
+                                name: "Legion Laptop",
+                                status: "delivered",
+                                user_id: 11
+                            };
+                            return [4 /*yield*/, store.create(order.name, order.status, order.user_id, "166")];
+                        case 1:
+                            _a.sent();
+                            return [4 /*yield*/, store.index()];
+                        case 2:
+                            orders = _a.sent();
+                            expect(orders.length).toBeGreaterThan(0);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        });
+    });
     it('--index is not null ', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             expect(crud.index).not.toBeNull();
@@ -51,25 +84,56 @@ describe('***orders functions test***', function () {
             return [2 /*return*/];
         });
     }); });
-    it('--create is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('--create is working ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var order, res;
         return __generator(this, function (_a) {
-            expect(crud.create).toBeDefined();
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    order = {
+                        id: undefined,
+                        name: "Legion Laptop",
+                        status: "delivered",
+                        user_id: 11
+                    };
+                    return [4 /*yield*/, store.create(order.name, order.status, order.user_id, "166")];
+                case 1:
+                    res = _a.sent();
+                    expect(res).toEqual({ "name": "Legion Laptop", "status": "delivered" });
+                    return [2 /*return*/];
+            }
         });
     }); });
     it('--edit is not equal "1" ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var order, res;
         return __generator(this, function (_a) {
-            expect(crud.edit).not.toEqual(1);
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    order = {
+                        id: undefined,
+                        name: "Legion Laptop",
+                        status: "delivered",
+                        user_id: 11
+                    };
+                    return [4 /*yield*/, store.edit(order.user_id, order.name, order.status)];
+                case 1:
+                    res = _a.sent();
+                    expect(res).toEqual({ "name": "Legion Laptop", "status": "delivered" });
+                    return [2 /*return*/];
+            }
         });
     }); });
     it('--delete is defined ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var res;
         return __generator(this, function (_a) {
-            expect(crud.delete).toBeDefined();
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, store.create(order.name, order.status, order.user_id, "166")];
+                case 1:
+                    res = _a.sent();
+                    expect(crud.delete("166")).toBeTruthy();
+                    return [2 /*return*/];
+            }
         });
     }); });
+    // it('--delete not throw error ', async () => {
+    //   expect(crud.delete).not.toThrow(new Error());
 });
-// it('--delete not throw error ', async () => {
-//   expect(crud.delete).not.toThrow(new Error());
-// });

@@ -50,22 +50,20 @@ var productCRUD = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
-                        conn = database_1.default.connect();
-                        q = 'select * from products';
-                        return [4 /*yield*/, conn];
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
-                        result = (_a.sent()).query(q);
-                        return [4 /*yield*/, conn];
-                    case 2:
-                        (_a.sent()).release();
+                        conn = _a.sent();
+                        q = 'select * from products;';
+                        result = conn.query(q);
+                        conn.release();
                         return [4 /*yield*/, result];
-                    case 3: return [2 /*return*/, (_a.sent()).rows];
-                    case 4:
+                    case 2: return [2 /*return*/, (_a.sent()).rows];
+                    case 3:
                         err_1 = _a.sent();
                         console.log(err_1);
                         throw new Error("".concat(err_1));
-                    case 5: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -85,13 +83,7 @@ var productCRUD = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        return [2 /*return*/, result.rows[0]
-                            // const conn= await client.connect()
-                            // const q=`select * from products where id=${id}`
-                            // const result=  await conn.query(q);
-                            //  conn.release()
-                            // return result.rows[0]
-                        ];
+                        return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_2 = _a.sent();
                         console.log(err_2);
@@ -107,23 +99,23 @@ var productCRUD = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
-                        conn = database_1.default.connect();
-                        connection = database_1.default.connect();
-                        q = " INSERT INTO products (name,price) VALUES ('".concat(name, "',").concat(price, ")");
-                        return [4 /*yield*/, conn];
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
-                        result = (_a.sent()).query(q);
-                        return [4 /*yield*/, conn];
+                        conn = _a.sent();
+                        connection = database_1.default.connect();
+                        q = " INSERT INTO products (name,price) VALUES ('".concat(name, "',").concat(price, ") RETURNING name,price;");
+                        return [4 /*yield*/, conn.query(q)];
                     case 2:
-                        (_a.sent()).release();
-                        return [4 /*yield*/, result];
-                    case 3: return [2 /*return*/, (_a.sent()).rows];
-                    case 4:
+                        result = _a.sent();
+                        console.log(result.rows[0]);
+                        conn.release();
+                        return [2 /*return*/, result.rows[0]];
+                    case 3:
                         err_3 = _a.sent();
                         console.log(err_3);
                         throw new Error("".concat(err_3));
-                    case 5: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -135,13 +127,10 @@ var productCRUD = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, database_1.default.connect()
-                            //    const q=` INSERT INTO products (name,price) VALUES ('${name}',${price})`
-                            //  UPDATE products SET name = '${name}', price = ${price} WHERE id=${id};
-                        ];
+                        return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        q = "UPDATE products SET name = '".concat(name, "', price = ").concat(price, " WHERE id=").concat(id, ";\n");
+                        q = "UPDATE products SET name = '".concat(name, "', price = ").concat(price, " WHERE id=").concat(id, " RETURNING name,price;");
                         return [4 /*yield*/, conn.query(q)];
                     case 2:
                         result = _a.sent();
@@ -163,7 +152,7 @@ var productCRUD = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        sql = 'DELETE FROM products WHERE id=($1)';
+                        sql = 'DELETE FROM products WHERE id=($1) RETURNING *';
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
@@ -172,11 +161,6 @@ var productCRUD = /** @class */ (function () {
                         result = _a.sent();
                         product = result.rows[0];
                         conn.release();
-                        // const conn= client.connect()
-                        // //const q=`delete from  where id=${id}`
-                        // const result=  (await conn).query(q);
-                        // (await conn).release()
-                        // return (await result).rows
                         return [2 /*return*/, product];
                     case 3:
                         err_5 = _a.sent();
